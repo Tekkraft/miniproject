@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxchs6rank4y2"]
+
+[ext_resource type="Script" path="res://scenes/unit_instance.gd" id="1_o8qom"]
+[ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="2_4i5t6"]
+
+[node name="Unit" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_o8qom")
+
+[node name="UnitSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_4i5t6")

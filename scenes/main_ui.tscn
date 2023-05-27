@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwyxdclt02hos"]
+
+[ext_resource type="Script" path="res://scripts/test_button.gd" id="1_x52wc"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.690196, 0.286275, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Test TEST TEST"
+script = ExtResource("1_x52wc")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

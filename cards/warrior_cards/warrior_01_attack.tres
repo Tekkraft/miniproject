@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c4ejghskndx4i"]
+
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_m6842"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_y5bvx"]
+
+[resource]
+script = ExtResource("1_y5bvx")
+card_name = "Attack"
+card_sprite = ExtResource("1_m6842")
+card_description = "Deal 8 damage."
