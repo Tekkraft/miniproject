@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://dpx0tvtbk5413"]
+
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_3o45y"]
+
+[resource]
+script = ExtResource("1_3o45y")
+action_name = "Shield"
+action_type = 1
+action_effects = PackedStringArray("shield-3")

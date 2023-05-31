@@ -21,11 +21,19 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0.690196, 0.286275, 1)
 
-[node name="Button" type="Button" parent="."]
+[node name="TestButton" type="Button" parent="."]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Test TEST TEST"
 script = ExtResource("1_x52wc")
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="EndTurnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1720.0
+offset_top = 980.0
+offset_right = 1798.0
+offset_bottom = 1011.0
+text = "End Turn"
+
+[connection signal="pressed" from="TestButton" to="TestButton" method="_on_pressed"]

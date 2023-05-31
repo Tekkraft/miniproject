@@ -50,14 +50,10 @@ func _load_cards():
 	for i in 3:
 		tmpres = load("res://cards/warrior_cards/warrior_02_defend.tres")
 		handler._create_card(tmpres)
-	for i in 2:
+	for i in 3:
 		tmpres = load("res://cards/elementalist_cards/elementalist_01_fireblast.tres")
 		handler._create_card(tmpres)
-	for i in 2:
-		tmpres = load("res://cards/elementalist_cards/elementalist_02_thunderbolt.tres")
+	for i in 3:
+		tmpres = load("res://cards/elementalist_cards/elementalist_02_thunderburst.tres")
 		handler._create_card(tmpres)
-	for i in 2:
-		tmpres = load("res://cards/elementalist_cards/elementalist_03_iceburst.tres")
-		handler._create_card(tmpres)
-	for i in 6:
-		handler._draw_card()
+	handler._setup()

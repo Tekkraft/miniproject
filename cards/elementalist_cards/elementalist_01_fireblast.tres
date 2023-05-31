@@ -7,4 +7,9 @@
 script = ExtResource("1_q5ks7")
 card_name = "Fireblast"
 card_sprite = ExtResource("1_n78mo")
-card_description = "Deal 6 damage."
+card_description = "Deal 8 damage in a cross."
+card_effects = PackedStringArray("damage-8+magic")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 1
+card_targeting_modifier = ""

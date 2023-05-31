@@ -1,11 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxchs6rank4y2"]
+[gd_scene load_steps=4 format=3 uid="uid://htvpw7xt4qg5"]
 
-[ext_resource type="Script" path="res://scenes/unit_instance.gd" id="1_o8qom"]
+[ext_resource type="Script" path="res://scripts/unit_instance.gd" id="1_kqhge"]
 [ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="2_4i5t6"]
+[ext_resource type="Texture2D" uid="uid://bey74p6dc21c2" path="res://sprites/intents/EnemyIntentAttack.png" id="3_g5mlc"]
 
 [node name="Unit" type="Node2D"]
-scale = Vector2(0.75, 0.75)
-script = ExtResource("1_o8qom")
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_kqhge")
 
 [node name="UnitSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_4i5t6")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -32.0
+offset_top = 34.0
+offset_right = 32.0
+offset_bottom = 38.0
+show_percentage = false
+
+[node name="Intent" type="Node2D" parent="."]
+
+[node name="IntentIcon" type="Sprite2D" parent="Intent"]
+position = Vector2(-4, -36)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_g5mlc")
+
+[node name="IntentAmount" type="RichTextLabel" parent="Intent"]
+offset_top = -40.0
+offset_right = 256.0
+offset_bottom = 24.0
+scale = Vector2(0.125, 0.125)
+theme_override_font_sizes/normal_font_size = 46
+text = "123456"

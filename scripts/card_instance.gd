@@ -21,7 +21,7 @@ func _process(delta):
 
 func _setup(card_data : Card):
 	self.card_data = card_data
-	get_node("CardTitle").text = card_data.card_name
+	get_node("CardTitle").text = card_data.card_name 
 	get_node("CardDescription").text = card_data.card_description 
 	get_node("CardArt").texture = card_data.card_sprite
 

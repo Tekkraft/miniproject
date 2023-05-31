@@ -1,9 +1,9 @@
-res://cards/elementalist_cards/
+res://enemies/test_enemy/
 res://scripts
+res://scenes
+res://cards/elementalist_cards/
 res://cards/warrior_cards/
 res://cards/
-res://scenes
 res://enemies/basic_actions/
-res://enemies/test_enemy/
 res://
 res://tiles

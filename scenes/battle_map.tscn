@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://vdn2hw58sjxd"]
+[gd_scene load_steps=6 format=3 uid="uid://cxnsowvu5ano3"]
 
 [ext_resource type="Texture2D" uid="uid://vet7jgu06h5k" path="res://tiles/TileOutlineBordered.png" id="1_3mmfq"]
 [ext_resource type="Script" path="res://scripts/map_handler.gd" id="1_ejx7e"]
+[ext_resource type="Script" path="res://scripts/player_instance.gd" id="3_ar7x8"]
+[ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="3_m3cij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1t4m"]
 size = Vector2(64, 64)
@@ -11,34 +13,37 @@ scale = Vector2(3, 3)
 script = ExtResource("1_ejx7e")
 
 [node name="Tile_0_0" type="Sprite2D" parent="."]
-position = Vector2(-72, -72)
+position = Vector2(72, -72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_0_0"]
+position = Vector2(0.666656, 0)
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Tile_0_0/TileArea"]
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_1_0" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, -72)
+position = Vector2(144, -72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_1_0"]
+position = Vector2(0.666656, 0)
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Tile_1_0/TileArea"]
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_2_0" type="Sprite2D" parent="."]
-position = Vector2(72, -72)
+position = Vector2(216, -72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_2_0"]
+position = Vector2(0.666641, 0)
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Tile_2_0/TileArea"]
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_0_1" type="Sprite2D" parent="."]
-position = Vector2(-72, 2.08165e-12)
+position = Vector2(72, 2.08165e-12)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_0_1"]
@@ -47,7 +52,7 @@ texture = ExtResource("1_3mmfq")
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_1_1" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(144, 2.08165e-12)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_1_1"]
@@ -56,7 +61,7 @@ texture = ExtResource("1_3mmfq")
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_2_1" type="Sprite2D" parent="."]
-position = Vector2(72, 2.08165e-12)
+position = Vector2(216, 2.08165e-12)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_2_1"]
@@ -65,7 +70,7 @@ texture = ExtResource("1_3mmfq")
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_0_2" type="Sprite2D" parent="."]
-position = Vector2(-72, 72)
+position = Vector2(72, 72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_0_2"]
@@ -74,7 +79,7 @@ texture = ExtResource("1_3mmfq")
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_1_2" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, 72)
+position = Vector2(144, 72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_1_2"]
@@ -83,13 +88,38 @@ texture = ExtResource("1_3mmfq")
 shape = SubResource("RectangleShape2D_n1t4m")
 
 [node name="Tile_2_2" type="Sprite2D" parent="."]
-position = Vector2(72, 72)
+position = Vector2(216, 72)
 texture = ExtResource("1_3mmfq")
 
 [node name="TileArea" type="Area2D" parent="Tile_2_2"]
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Tile_2_2/TileArea"]
 shape = SubResource("RectangleShape2D_n1t4m")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(-144, 2.08165e-12)
+texture = ExtResource("1_3mmfq")
+script = ExtResource("3_ar7x8")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_m3cij")
+
+[node name="HealthBar" type="ProgressBar" parent="Player"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -32.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 64.0
+step = 1.0
+value = 64.0
+show_percentage = false
 
 [connection signal="mouse_entered" from="Tile_0_0/TileArea" to="." method="_on_tile_area_mouse_entered" binds= [Vector2i(0, 0)]]
 [connection signal="mouse_exited" from="Tile_0_0/TileArea" to="." method="_on_tile_area_mouse_exited" binds= [Vector2i(0, 0)]]
