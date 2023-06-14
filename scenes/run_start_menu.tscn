@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://mbistwdtjj6l"]
+
+[ext_resource type="Script" path="res://scripts/run_start_menu.gd" id="1_jacdw"]
+[ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="1_vkvk0"]
+
+[node name="RunStartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jacdw")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="CardDeckPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1392.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 1064.0
+
+[node name="DepartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 1016.0
+offset_right = 208.0
+offset_bottom = 1064.0
+text = "Depart"
+
+[node name="CharacterInfoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 16.0
+offset_right = 1376.0
+offset_bottom = 1064.0
+
+[node name="MartialClassName" type="RichTextLabel" parent="CharacterInfoPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 464.0
+offset_bottom = 80.0
+text = "(MARTIAL CLASS)"
+
+[node name="MysticClassName" type="RichTextLabel" parent="CharacterInfoPanel"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 16.0
+offset_right = 928.0
+offset_bottom = 80.0
+text = "(MYSTIC CLASS)"
+
+[node name="MartialClassDescription" type="RichTextLabel" parent="CharacterInfoPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = 464.0
+offset_bottom = 152.0
+text = "(MARTIAL CLASS DESCRIPTION)"
+
+[node name="MysticClassDescription" type="RichTextLabel" parent="CharacterInfoPanel"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 88.0
+offset_right = 928.0
+offset_bottom = 152.0
+text = "(MYSTIC CLASS DESCRIPTION)"
+
+[node name="SpritePanel" type="Panel" parent="CharacterInfoPanel"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 168.0
+offset_right = 752.0
+offset_bottom = 728.0
+
+[node name="TextureRect" type="TextureRect" parent="CharacterInfoPanel/SpritePanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 552.0
+offset_bottom = 552.0
+texture = ExtResource("1_vkvk0")
+
+[node name="MartialClassSelect" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 78.0
+auto_height = true
+
+[node name="MysticClassSelect" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 78.0
+auto_height = true
+
+[connection signal="pressed" from="DepartButton" to="." method="_on_depart_button_pressed"]
+[connection signal="item_selected" from="MartialClassSelect" to="." method="_on_martial_class_selected"]
+[connection signal="item_selected" from="MysticClassSelect" to="." method="_on_mystic_class_selected"]

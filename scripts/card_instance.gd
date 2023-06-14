@@ -30,7 +30,7 @@ func _input(event):
 		if event.is_action_pressed("action_select") && hovered:
 			var new_line = target_line.instantiate()
 			add_child(new_line)
-			new_line._setup(position)
+			new_line._setup(global_position)
 			active = true
 			emit_signal("card_activated", self)
 		elif event.is_action_released("action_select") && active:

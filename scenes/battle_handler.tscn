@@ -4,3 +4,5 @@
 
 [node name="BattleHandler" type="Node"]
 script = ExtResource("1_slw4u")
+
+[node name="GameTimer" type="Timer" parent="."]

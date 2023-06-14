@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cql0csjxhk6qm"]
+
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_4fyt5"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_pvd3d"]
+
+[resource]
+script = ExtResource("1_pvd3d")
+card_name = "Stalwart"
+card_cost = 3
+card_sprite = ExtResource("1_4fyt5")
+card_description = "Gain 40 shield.
+Inflict 2 Weakness on yourself."
+card_effects = PackedStringArray("shield-40", "status-2+id:weakness")
+card_targeting_type = 1
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://po02tag18bk3"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_3sbpv"]
+[ext_resource type="Texture2D" uid="uid://1oiew4jatah" path="res://sprites/statuses/StatusIconsStrength.png" id="2_3g8yi"]
+
+[resource]
+script = ExtResource("1_3sbpv")
+status_name = "Strength"
+status_icon = ExtResource("2_3g8yi")
+status_class = 0
+status_activation = 6
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("phys_atk-1+mod:pos")
+status_tick_down = 3
+status_flags = PackedStringArray()

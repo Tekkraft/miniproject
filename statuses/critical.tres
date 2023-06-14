@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://dn5uqx1rwav4b"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_bjfv6"]
+[ext_resource type="Texture2D" uid="uid://bkyho4y31hlb4" path="res://sprites/statuses/StatusIconsCritical.png" id="2_exh1d"]
+
+[resource]
+script = ExtResource("1_bjfv6")
+status_name = "Critical"
+status_icon = ExtResource("2_exh1d")
+status_class = 0
+status_activation = 6
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("critical-0", "clear-all")
+status_tick_down = 3
+status_flags = PackedStringArray()

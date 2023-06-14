@@ -7,6 +7,7 @@ enum CardTargeting {MELEE, TARGET, TILE}
 enum CardAOE {SINGLE, CROSS, ROW, RANK, ALL, CUSTOM}
 
 @export var card_name : String
+@export var card_cost : int
 @export var card_sprite : Texture2D
 @export_multiline var card_description : String
 @export var card_effects : PackedStringArray

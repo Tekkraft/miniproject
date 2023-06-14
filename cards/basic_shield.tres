@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://lphgp15nxpnm"]
+
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_27itd"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_xevdl"]
+
+[resource]
+script = ExtResource("2_xevdl")
+card_name = "Shield"
+card_cost = 1
+card_sprite = ExtResource("1_27itd")
+card_description = "Gain 6 shield."
+card_effects = PackedStringArray("shield-6")
+card_targeting_type = 1
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""

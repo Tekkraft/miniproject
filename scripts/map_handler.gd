@@ -6,7 +6,6 @@ var active_tile
 func _ready():
 	active_tile = null
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

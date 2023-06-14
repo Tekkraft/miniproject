@@ -96,7 +96,7 @@ texture = ExtResource("1_3mmfq")
 [node name="AreaCollider" type="CollisionShape2D" parent="Tile_2_2/TileArea"]
 shape = SubResource("RectangleShape2D_n1t4m")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="Player" type="Sprite2D" parent="." groups=["Player"]]
 position = Vector2(-144, 2.08165e-12)
 texture = ExtResource("1_3mmfq")
 script = ExtResource("3_ar7x8")
@@ -112,14 +112,28 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -64.0
-offset_top = -32.0
-offset_bottom = -28.0
+offset_top = -28.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 64.0
 step = 1.0
 value = 64.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthLabel" type="RichTextLabel" parent="Player/HealthBar"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 67.0
+scale = Vector2(0.125, 0.125)
+theme_override_font_sizes/normal_font_size = 36
+text = "1/100"
+fit_content = true
+scroll_active = false
+
+[node name="Status" type="Node2D" parent="Player"]
+position = Vector2(-32, 48)
 
 [connection signal="mouse_entered" from="Tile_0_0/TileArea" to="." method="_on_tile_area_mouse_entered" binds= [Vector2i(0, 0)]]
 [connection signal="mouse_exited" from="Tile_0_0/TileArea" to="." method="_on_tile_area_mouse_exited" binds= [Vector2i(0, 0)]]

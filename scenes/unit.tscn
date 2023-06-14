@@ -1,34 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://htvpw7xt4qg5"]
+[gd_scene load_steps=4 format=3 uid="uid://d0mi1jjavj4mm"]
 
 [ext_resource type="Script" path="res://scripts/unit_instance.gd" id="1_kqhge"]
 [ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="2_4i5t6"]
-[ext_resource type="Texture2D" uid="uid://bey74p6dc21c2" path="res://sprites/intents/EnemyIntentAttack.png" id="3_g5mlc"]
+[ext_resource type="Texture2D" uid="uid://bey74p6dc21c2" path="res://sprites/intents/EnemyIntentsAttack.png" id="3_733ci"]
 
 [node name="Unit" type="Node2D"]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_kqhge")
 
 [node name="UnitSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_4i5t6")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -32.0
-offset_top = 34.0
-offset_right = 32.0
-offset_bottom = 38.0
+offset_left = -24.0
+offset_top = 26.0
+offset_right = 24.0
+offset_bottom = 34.0
+mouse_filter = 2
 show_percentage = false
+
+[node name="HealthLabel" type="RichTextLabel" parent="HealthBar"]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 67.0
+scale = Vector2(0.125, 0.125)
+theme_override_font_sizes/normal_font_size = 36
+text = "1/100"
+fit_content = true
+scroll_active = false
 
 [node name="Intent" type="Node2D" parent="."]
 
 [node name="IntentIcon" type="Sprite2D" parent="Intent"]
-position = Vector2(-4, -36)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("3_g5mlc")
+position = Vector2(-8, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_733ci")
 
 [node name="IntentAmount" type="RichTextLabel" parent="Intent"]
 offset_top = -40.0
 offset_right = 256.0
 offset_bottom = 24.0
-scale = Vector2(0.125, 0.125)
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 46
 text = "123456"
+
+[node name="Status" type="Node2D" parent="."]
+position = Vector2(-24, 38)

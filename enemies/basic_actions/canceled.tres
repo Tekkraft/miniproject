@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Action" load_steps=2 format=3 uid="uid://ci1neehq6ri75"]
+
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_odan6"]
+
+[resource]
+script = ExtResource("1_odan6")
+action_name = "Canceled"
+action_type = 5
+action_effects = PackedStringArray()

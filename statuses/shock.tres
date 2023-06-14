@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://c8xn80f4yrceq"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_mfmhw"]
+[ext_resource type="Texture2D" uid="uid://c6vgkpfd16yeg" path="res://sprites/statuses/StatusIconsShock.png" id="2_f5goo"]
+
+[resource]
+script = ExtResource("1_mfmhw")
+status_name = "Shock"
+status_icon = ExtResource("2_f5goo")
+status_class = 1
+status_activation = 6
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("stack_damage-1")
+status_tick_down = 3
+status_flags = PackedStringArray()

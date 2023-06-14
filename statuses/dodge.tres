@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://byql4xkndjbex"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_qsjcs"]
+[ext_resource type="Texture2D" uid="uid://cckiq1n5sf4pn" path="res://sprites/statuses/StatusIconsDodge.png" id="2_fonps"]
+
+[resource]
+script = ExtResource("1_qsjcs")
+status_name = "Dodge"
+status_icon = ExtResource("2_fonps")
+status_class = 0
+status_activation = 5
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("dodge-0")
+status_tick_down = 2
+status_flags = PackedStringArray()

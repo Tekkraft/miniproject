@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://crk4relax4q08"]
+
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_03nbs"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_56l67"]
+
+[resource]
+script = ExtResource("1_56l67")
+card_name = "Fortify"
+card_cost = 2
+card_sprite = ExtResource("1_03nbs")
+card_description = "Gain 18 shield."
+card_effects = PackedStringArray("shield-18")
+card_targeting_type = 1
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""

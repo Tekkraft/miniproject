@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bwjqjs8d344j3"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_1h178"]
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_cx80n"]
+
+[resource]
+script = ExtResource("1_1h178")
+card_name = "Vital Blow"
+card_cost = 2
+card_sprite = ExtResource("1_cx80n")
+card_description = "Gain 1 Critical.
+Deal 12 damage."
+card_effects = PackedStringArray("status-1+id:critical,target:self", "damage-12")
+card_targeting_type = 0
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""

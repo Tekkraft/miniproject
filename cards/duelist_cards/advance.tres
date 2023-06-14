@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b1pi4mxn6jyo7"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_dw88w"]
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_y6k1x"]
+
+[resource]
+script = ExtResource("1_dw88w")
+card_name = "Advance"
+card_cost = 0
+card_sprite = ExtResource("1_y6k1x")
+card_description = "Deal 5 daamage. Gain 1 Precision."
+card_effects = PackedStringArray("damage-5", "status-1+id:precision,target:self")
+card_targeting_type = 0
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""

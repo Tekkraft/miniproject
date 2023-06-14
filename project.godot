@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Miniproject"
-run/main_scene="res://scenes/preload_test.tscn"
+run/main_scene="res://scenes/run_start_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SceneHandler="*res://scripts/scene_handler.gd"
+DataHandler="*res://scripts/data_handler.gd"
+RunHandler="*res://scripts/run_handler.gd"
 
 [display]
 

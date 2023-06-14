@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cd5vk6upcoq8k"]
+
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_m72r2"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_xuk2a"]
+
+[resource]
+script = ExtResource("2_xuk2a")
+card_name = "Thunderburst"
+card_cost = 1
+card_sprite = ExtResource("1_m72r2")
+card_description = "Deal 6 damage.
+Inflict 2 Shock."
+card_effects = PackedStringArray("damage-6", "status-2+id:shock")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""

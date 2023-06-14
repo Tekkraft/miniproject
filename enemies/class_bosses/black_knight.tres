@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=15 format=3 uid="uid://lwj8ocevwa1y"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_3da4s"]
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_6dgpf"]
+[ext_resource type="Script" path="res://scripts/action_profile.gd" id="1_nc1lw"]
+[ext_resource type="Texture2D" uid="uid://ddjwhtx835yuu" path="res://sprites/enemies/TempEnemySpritesBossBlackKnight.png" id="3_7eajo"]
+[ext_resource type="Resource" uid="uid://opek1o8slwvc" path="res://statuses/special/power_through.tres" id="4_ith7n"]
+
+[sub_resource type="Resource" id="Resource_u56vr"]
+script = ExtResource("1_6dgpf")
+action_name = "Attack"
+action_type = 0
+action_effects = PackedStringArray("damage-20")
+
+[sub_resource type="Resource" id="Resource_xeo6s"]
+script = ExtResource("1_6dgpf")
+action_name = "Double Attack"
+action_type = 0
+action_effects = PackedStringArray("damage-8", "damage-8")
+
+[sub_resource type="Resource" id="Resource_6xkvo"]
+script = ExtResource("1_6dgpf")
+action_name = "Whirlwind"
+action_type = 0
+action_effects = PackedStringArray("damage-6", "damage-5", "damage-4")
+
+[sub_resource type="Resource" id="Resource_bysht"]
+script = ExtResource("1_6dgpf")
+action_name = "Superpower"
+action_type = 0
+action_effects = PackedStringArray("damage-30", "status-1+id:weakness,target:self", "status-1+id:sunder,target:self")
+
+[sub_resource type="Resource" id="Resource_0org7"]
+script = ExtResource("1_6dgpf")
+action_name = "Shield Block"
+action_type = 1
+action_effects = PackedStringArray("shield-20")
+
+[sub_resource type="Resource" id="Resource_astpe"]
+script = ExtResource("1_6dgpf")
+action_name = "Strengthen"
+action_type = 2
+action_effects = PackedStringArray("status-1+id:strength")
+
+[sub_resource type="Resource" id="Resource_o0gx4"]
+script = ExtResource("1_6dgpf")
+action_name = "Challenge"
+action_type = 3
+action_effects = PackedStringArray("status-4+id:strength,target:self", "status-2+id:strength")
+
+[sub_resource type="Resource" id="Resource_nvohf"]
+script = ExtResource("1_6dgpf")
+action_name = "Taunt"
+action_type = 4
+action_effects = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_nnnmw"]
+script = ExtResource("1_nc1lw")
+action_list = Array[ExtResource("1_6dgpf")]([SubResource("Resource_u56vr"), SubResource("Resource_xeo6s"), SubResource("Resource_6xkvo"), SubResource("Resource_bysht")])
+passive_action_list = Array[ExtResource("1_6dgpf")]([SubResource("Resource_0org7"), SubResource("Resource_astpe"), SubResource("Resource_o0gx4"), SubResource("Resource_nvohf")])
+
+[resource]
+script = ExtResource("1_3da4s")
+hp = 150
+actions = SubResource("Resource_nnnmw")
+sprite = ExtResource("3_7eajo")
+starting_hostility = false
+starting_statuses = Array[Resource("res://scripts/status.gd")]([ExtResource("4_ith7n")])

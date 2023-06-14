@@ -2,12 +2,14 @@ extends Resource
 
 class_name Action
 
-enum ActionType {ATTACK, SHIELD, BUFF, DEBUFF}
+enum ActionType {ATTACK, SHIELD, BUFF, DEBUFF, RELOAD, CANCELED}
 
-var attack_icon = preload("res://sprites/intents/EnemyIntentAttack.png")
-var shield_icon = preload("res://sprites/intents/EnemyIntentShield.png")
-var buff_icon = preload("res://sprites/intents/EnemyIntentBuff.png")
-var debuff_icon = preload("res://sprites/intents/EnemyIntentDebuff.png")
+var attack_icon = preload("res://sprites/intents/EnemyIntentsAttack.png")
+var shield_icon = preload("res://sprites/intents/EnemyIntentsShield.png")
+var buff_icon = preload("res://sprites/intents/EnemyIntentsBuff.png")
+var debuff_icon = preload("res://sprites/intents/EnemyIntentsDebuff.png")
+var reload_icon = preload("res://sprites/intents/EnemyIntentsReload.png")
+var canceled_icon = preload("res://sprites/intents/EnemyIntentsCanceled.png")
 
 @export var action_name : String
 @export var action_type : ActionType
@@ -23,6 +25,10 @@ func _get_action_icon():
 			return buff_icon
 		ActionType.DEBUFF:
 			return debuff_icon
+		ActionType.RELOAD:
+			return reload_icon
+		ActionType.CANCELED:
+			return canceled_icon
 		_:
 			print("ERR>Invalid Action Type")
 			return attack_icon

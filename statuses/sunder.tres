@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://0fekaagj3kos"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_rbuyr"]
+[ext_resource type="Texture2D" uid="uid://bddp37t0s3pis" path="res://sprites/statuses/StatusIconsSunder.png" id="2_hoqjw"]
+
+[resource]
+script = ExtResource("1_rbuyr")
+status_name = "Sunder"
+status_icon = ExtResource("2_hoqjw")
+status_class = 1
+status_activation = 5
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("phys_def-1+mod:neg")
+status_tick_down = 3
+status_flags = PackedStringArray()

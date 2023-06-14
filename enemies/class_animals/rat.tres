@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=8 format=3 uid="uid://dh7u73kvcelmi"]
+
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_jyaqv"]
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_u4fur"]
+[ext_resource type="Script" path="res://scripts/action_profile.gd" id="2_bvf55"]
+[ext_resource type="Texture2D" uid="uid://cargpw0c1vjb7" path="res://sprites/enemies/TempEnemySpritesRat.png" id="4_k6buj"]
+
+[sub_resource type="Resource" id="Resource_go178"]
+script = ExtResource("1_jyaqv")
+action_name = "Bite"
+action_type = 0
+action_effects = PackedStringArray("damage-2")
+
+[sub_resource type="Resource" id="Resource_qa5r0"]
+script = ExtResource("1_jyaqv")
+action_name = "Bite"
+action_type = 0
+action_effects = PackedStringArray("damage-2")
+
+[sub_resource type="Resource" id="Resource_0r4t3"]
+script = ExtResource("2_bvf55")
+action_list = Array[ExtResource("1_jyaqv")]([SubResource("Resource_go178")])
+passive_action_list = Array[ExtResource("1_jyaqv")]([SubResource("Resource_qa5r0")])
+
+[resource]
+script = ExtResource("1_u4fur")
+hp = 1
+actions = SubResource("Resource_0r4t3")
+sprite = ExtResource("4_k6buj")
+starting_hostility = true

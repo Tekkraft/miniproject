@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ActionProfile" load_steps=4 format=3 uid="uid://dhu0mgkpfx43e"]
-
-[ext_resource type="Resource" uid="uid://d0lao1il70p5e" path="res://enemies/basic_actions/attack.tres" id="1_45uyi"]
-[ext_resource type="Script" path="res://scripts/action_profile.gd" id="1_mn6sl"]
-[ext_resource type="Resource" uid="uid://dpx0tvtbk5413" path="res://enemies/basic_actions/shield.tres" id="2_1wbw5"]
-
-[resource]
-script = ExtResource("1_mn6sl")
-action_list = Array[Resource("res://scripts/action.gd")]([ExtResource("1_45uyi"), ExtResource("2_1wbw5")])

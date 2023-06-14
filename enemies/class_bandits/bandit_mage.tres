@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=11 format=3 uid="uid://bcvdy1f0e1nl8"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_0wu70"]
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_whxdf"]
+[ext_resource type="Script" path="res://scripts/action_profile.gd" id="2_57s1a"]
+[ext_resource type="Texture2D" uid="uid://4gaddnow1tfe" path="res://sprites/enemies/TempEnemySpritesMage.png" id="4_badng"]
+
+[sub_resource type="Resource" id="Resource_3mauf"]
+script = ExtResource("1_whxdf")
+action_name = "Magic Blast"
+action_type = 0
+action_effects = PackedStringArray("damage-16")
+
+[sub_resource type="Resource" id="Resource_6cv6b"]
+script = ExtResource("1_whxdf")
+action_name = "Magic Missile"
+action_type = 0
+action_effects = PackedStringArray("damage-2", "damage-2", "damage-2", "damage-2")
+
+[sub_resource type="Resource" id="Resource_d6ns1"]
+script = ExtResource("1_whxdf")
+action_name = "Thunder Shock"
+action_type = 0
+action_effects = PackedStringArray("damage-6", "status-1+id:shock")
+
+[sub_resource type="Resource" id="Resource_lpoqf"]
+script = ExtResource("1_whxdf")
+action_name = "Magic Shield"
+action_type = 1
+action_effects = PackedStringArray("shield-4")
+
+[sub_resource type="Resource" id="Resource_2e1kp"]
+script = ExtResource("1_whxdf")
+action_name = "Magic Step"
+action_type = 2
+action_effects = PackedStringArray("status-1+id:dodge")
+
+[sub_resource type="Resource" id="Resource_cy1xc"]
+script = ExtResource("2_57s1a")
+action_list = Array[ExtResource("1_whxdf")]([SubResource("Resource_3mauf"), SubResource("Resource_6cv6b"), SubResource("Resource_d6ns1")])
+passive_action_list = Array[ExtResource("1_whxdf")]([SubResource("Resource_lpoqf"), SubResource("Resource_2e1kp")])
+
+[resource]
+script = ExtResource("1_0wu70")
+hp = 10
+actions = SubResource("Resource_cy1xc")
+sprite = ExtResource("4_badng")
+starting_hostility = true
+starting_statuses = Array[Resource("res://scripts/status.gd")]([])

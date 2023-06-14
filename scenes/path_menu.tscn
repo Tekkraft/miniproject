@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx2ooaxho1oxc"]
+
+[ext_resource type="Texture2D" uid="uid://bnj11ri8pep6d" path="res://sprites/encounters/EncounterIconCombat.png" id="1_41ppp"]
+[ext_resource type="Script" path="res://scripts/path_menu.gd" id="1_n2gnp"]
+[ext_resource type="Texture2D" uid="uid://wbr7qucqifaa" path="res://sprites/encounters/EncounterIconElite.png" id="2_b0rjs"]
+[ext_resource type="Texture2D" uid="uid://8ptvgy4lqtqu" path="res://sprites/encounters/EncounterIconChest.png" id="3_xi6r6"]
+
+[node name="PathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n2gnp")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="RoutePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 624.0
+
+[node name="Location0Image" type="TextureRect" parent="RoutePanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 528.0
+offset_bottom = 528.0
+texture = ExtResource("1_41ppp")
+
+[node name="Location0Button" type="Button" parent="RoutePanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 544.0
+offset_right = 528.0
+offset_bottom = 592.0
+text = "Location 1"
+
+[node name="Location1Image" type="TextureRect" parent="RoutePanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 704.0
+offset_top = 16.0
+offset_right = 1216.0
+offset_bottom = 528.0
+texture = ExtResource("2_b0rjs")
+
+[node name="Location1Button" type="Button" parent="RoutePanel"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 544.0
+offset_right = 1216.0
+offset_bottom = 592.0
+text = "Location 2"
+
+[node name="Location2Image" type="TextureRect" parent="RoutePanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 16.0
+offset_right = 1872.0
+offset_bottom = 528.0
+texture = ExtResource("3_xi6r6")
+
+[node name="Location2Button" type="Button" parent="RoutePanel"]
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 544.0
+offset_right = 1872.0
+offset_bottom = 592.0
+text = "Location 3"
+
+[connection signal="pressed" from="RoutePanel/Location0Button" to="." method="_on_location_selected" binds= [0]]
+[connection signal="pressed" from="RoutePanel/Location1Button" to="." method="_on_location_selected" binds= [1]]
+[connection signal="pressed" from="RoutePanel/Location2Button" to="." method="_on_location_selected" binds= [2]]

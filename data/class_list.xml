@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classes>
+  <class name="warrior" type="martial" />
+  <class name="duelist" type="martial" />
+  <class name="elementalist" type="mystic" />
+  <class name="arcanist" type="mystic" />
+</classes>

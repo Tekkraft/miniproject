@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cjnmowyj7usir"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_6ilss"]
+[ext_resource type="Texture2D" uid="uid://c0ihv4k0d6doh" path="res://sprites/statuses/StatusIconsWeakness.png" id="2_hj7ed"]
+
+[resource]
+script = ExtResource("1_6ilss")
+status_name = "Weakness"
+status_icon = ExtResource("2_hj7ed")
+status_class = 1
+status_activation = 6
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("phys_atk-1+mod:neg")
+status_tick_down = 3
+status_flags = PackedStringArray()

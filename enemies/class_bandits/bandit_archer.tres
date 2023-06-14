@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=10 format=3 uid="uid://co1cxt8vlnti3"]
+
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_26rn1"]
+[ext_resource type="Resource" uid="uid://h1kefj0cbsvn" path="res://enemies/basic_actions/reload.tres" id="2_4svp5"]
+[ext_resource type="Script" path="res://scripts/action_profile.gd" id="2_j43ex"]
+[ext_resource type="Script" path="res://scripts/unit.gd" id="3_l45ip"]
+[ext_resource type="Texture2D" uid="uid://cttpiwrwivttk" path="res://sprites/enemies/TempEnemySpritesArcher.png" id="4_qypoi"]
+
+[sub_resource type="Resource" id="Resource_0wcri"]
+script = ExtResource("1_26rn1")
+action_name = "Aim"
+action_type = 2
+action_effects = PackedStringArray("status-1+id:precision")
+
+[sub_resource type="Resource" id="Resource_jibgi"]
+script = ExtResource("1_26rn1")
+action_name = "Dodge"
+action_type = 2
+action_effects = PackedStringArray("status-1+id:dodge")
+
+[sub_resource type="Resource" id="Resource_eakv3"]
+script = ExtResource("1_26rn1")
+action_name = "Shoot"
+action_type = 0
+action_effects = PackedStringArray("damage-12")
+
+[sub_resource type="Resource" id="Resource_4i508"]
+script = ExtResource("2_j43ex")
+action_list = Array[ExtResource("1_26rn1")]([SubResource("Resource_0wcri"), SubResource("Resource_jibgi"), SubResource("Resource_eakv3")])
+passive_action_list = Array[ExtResource("1_26rn1")]([ExtResource("2_4svp5")])
+
+[resource]
+script = ExtResource("3_l45ip")
+hp = 12
+actions = SubResource("Resource_4i508")
+sprite = ExtResource("4_qypoi")
+starting_hostility = true

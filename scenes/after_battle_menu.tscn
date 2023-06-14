@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://qntnjvbtgj7e"]
+
+[ext_resource type="Script" path="res://scripts/after_battle_menu.gd" id="1_mydhs"]
+
+[node name="AfterBattleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mydhs")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="CardSelectPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1568.0
+offset_bottom = 632.0
+
+[node name="CardDock0" type="Node2D" parent="CardSelectPanel"]
+position = Vector2(256, 300)
+
+[node name="CardDock1" type="Node2D" parent="CardSelectPanel"]
+position = Vector2(768, 300)
+
+[node name="CardDock2" type="Node2D" parent="CardSelectPanel"]
+position = Vector2(1280, 300)
+
+[node name="Card0Button" type="Button" parent="CardSelectPanel"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 536.0
+offset_right = 384.0
+offset_bottom = 584.0
+text = "Select Card"
+
+[node name="Card1Button" type="Button" parent="CardSelectPanel"]
+offset_left = 640.0
+offset_top = 536.0
+offset_right = 896.0
+offset_bottom = 584.0
+text = "Select Card"
+
+[node name="Card2Button" type="Button" parent="CardSelectPanel"]
+offset_left = 1152.0
+offset_top = 536.0
+offset_right = 1408.0
+offset_bottom = 584.0
+text = "Select Card"
+
+[node name="DeckViewPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1568.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 632.0
+
+[node name="PreviewDock" type="Node2D" parent="DeckViewPanel"]
+position = Vector2(160, 16)
+
+[node name="ss" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1536.0
+offset_top = 720.0
+offset_right = 1664.0
+offset_bottom = 768.0
+text = "Skip Card"
+
+[connection signal="pressed" from="CardSelectPanel/Card0Button" to="." method="_on_select_card" binds= [0]]
+[connection signal="pressed" from="CardSelectPanel/Card1Button" to="." method="_on_select_card" binds= [1]]
+[connection signal="pressed" from="CardSelectPanel/Card2Button" to="." method="_on_select_card" binds= [2]]
+[connection signal="pressed" from="ss" to="." method="_on_exit_menu"]

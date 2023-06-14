@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwyxdclt02hos"]
-
-[ext_resource type="Script" path="res://scripts/test_button.gd" id="1_x52wc"]
+[gd_scene format=3 uid="uid://dwyxdclt02hos"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -21,13 +19,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0.690196, 0.286275, 1)
 
-[node name="TestButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Test TEST TEST"
-script = ExtResource("1_x52wc")
-
 [node name="EndTurnButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1720.0
@@ -36,4 +27,41 @@ offset_right = 1798.0
 offset_bottom = 1011.0
 text = "End Turn"
 
-[connection signal="pressed" from="TestButton" to="TestButton" method="_on_pressed"]
+[node name="BattleArea" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 32.0
+offset_right = 1640.0
+offset_bottom = 712.0
+mouse_filter = 2
+color = Color(0, 0.5, 0.208333, 1)
+
+[node name="EnergyMeter" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.505882, 0.505882, 0.505882, 1)
+
+[node name="EnergyLabel" type="RichTextLabel" parent="EnergyMeter"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/normal_font_size = 32
+text = "3/3"
+fit_content = true
+scroll_active = false
+
+[node name="CardArea" type="Node2D" parent="."]
+position = Vector2(960, 872)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 712.0
+offset_right = 1640.0
+offset_bottom = 1048.0
+mouse_filter = 2
+color = Color(0.227451, 0.227451, 0.227451, 1)

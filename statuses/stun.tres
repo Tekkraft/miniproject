@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://d2cqtd36atsu2"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_vkrqb"]
+[ext_resource type="Texture2D" uid="uid://s1psf45sknn" path="res://sprites/statuses/StatusIconsStun.png" id="2_kkp32"]
+
+[resource]
+script = ExtResource("1_vkrqb")
+status_name = "Stun"
+status_icon = ExtResource("2_kkp32")
+status_class = 1
+status_activation = 0
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("cancel_intent-1")
+status_tick_down = 3
+status_flags = PackedStringArray("blocking")

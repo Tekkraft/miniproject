@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://rwh8vikuis04"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_e31vm"]
+[ext_resource type="Texture2D" uid="uid://c7riwf28cq6a4" path="res://sprites/statuses/StatusIconsPrecision.png" id="2_p3wty"]
+
+[resource]
+script = ExtResource("1_e31vm")
+status_name = "Precision"
+status_icon = ExtResource("2_p3wty")
+status_class = 0
+status_activation = 4
+status_triggers = PackedStringArray("counter-3")
+status_effects = PackedStringArray("status-1+id:critical", "clear-3")
+status_tick_down = 3
+status_flags = PackedStringArray()

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=9 format=3 uid="uid://bafwbokxtlk0w"]
+
+[ext_resource type="Script" path="res://scripts/action.gd" id="1_4et2r"]
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_u18go"]
+[ext_resource type="Script" path="res://scripts/action_profile.gd" id="2_4lp48"]
+[ext_resource type="Texture2D" uid="uid://c8v6eyo75h4wf" path="res://sprites/enemies/TempEnemySpritesFighter.png" id="4_d67ds"]
+
+[sub_resource type="Resource" id="Resource_kv1nx"]
+script = ExtResource("1_4et2r")
+action_name = "Attack"
+action_type = 0
+action_effects = PackedStringArray("damage-8")
+
+[sub_resource type="Resource" id="Resource_tlfh3"]
+script = ExtResource("1_4et2r")
+action_name = "Double Attack"
+action_type = 0
+action_effects = PackedStringArray("damage-3", "damage-3")
+
+[sub_resource type="Resource" id="Resource_bndcb"]
+script = ExtResource("1_4et2r")
+action_name = "Shield"
+action_type = 1
+action_effects = PackedStringArray("shield-6")
+
+[sub_resource type="Resource" id="Resource_kog5t"]
+script = ExtResource("2_4lp48")
+action_list = Array[ExtResource("1_4et2r")]([SubResource("Resource_kv1nx"), SubResource("Resource_tlfh3")])
+passive_action_list = Array[ExtResource("1_4et2r")]([SubResource("Resource_bndcb")])
+
+[resource]
+script = ExtResource("1_u18go")
+hp = 20
+actions = SubResource("Resource_kog5t")
+sprite = ExtResource("4_d67ds")
+starting_hostility = false

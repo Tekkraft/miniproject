@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ces5ms4d6t41k"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_56wwx"]
+[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_jatjt"]
+
+[resource]
+script = ExtResource("1_56wwx")
+card_name = "Battle Heal"
+card_cost = 1
+card_sprite = ExtResource("1_jatjt")
+card_description = "Restore 5 health.
+Gain 5 shield.
+Exhaust."
+card_effects = PackedStringArray("heal-5", "shield-5", "exhaust_self-1")
+card_targeting_type = 1
+card_targeting = 0
+card_aoe = 0
+card_targeting_modifier = ""
