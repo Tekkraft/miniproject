@@ -2,6 +2,7 @@ extends Control
 
 var card_offerings = []
 var card = preload("res://scenes/card.tscn")
+var card_list_overlay = preload("res://scenes/card_list_overlay.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,3 +38,10 @@ func _on_select_card(index):
 
 func _on_exit_menu():
 	SceneHandler._load_run()
+
+func _on_view_deck_button_pressed():
+	var list = card_list_overlay.instantiate()
+	list._setup()
+	for card_data in RunHandler.current_deck:
+		list._add_card(card_data)
+	get_node("/root/").add_child(list)

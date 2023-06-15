@@ -8,6 +8,7 @@ var card_exile = []
 var enemy_map = [[null, null, null],[null, null, null],[null, null, null]]
 var unit = preload("res://scenes/unit.tscn")
 var card = preload("res://scenes/card.tscn")
+var card_list_overlay = preload("res://scenes/card_list_overlay.tscn")
 
 var max_energy = 3
 var current_energy = 3
@@ -56,6 +57,10 @@ func _setup(encounter_data : Encounter):
 	get_node("../BattleMap/Player")._setup()
 	
 	get_node("../MainUI/EndTurnButton").connect("pressed", _end_player_turn)
+	get_node("../MainUI/DeckButton").connect("pressed", _display_card_deck)
+	get_node("../MainUI/DiscardButton").connect("pressed", _display_card_discard)
+	get_node("../MainUI/ExileButton").connect("pressed", _display_card_exile)
+	
 	for card in RunHandler.current_deck:
 		_create_card(card)
 	_start_player_turn()
@@ -538,3 +543,21 @@ func _validate_status_condition_context(status, context):
 					if flag != modifiers_dictionary["flag"]:
 						return false
 	return true
+
+func _display_card_list(card_list):
+	var list = card_list_overlay.instantiate()
+	list._setup()
+	for card_object in card_list:
+		list._add_card(card_object.card_data)
+	get_node("/root/").add_child(list)
+
+func _display_card_deck():
+	var copy = card_deck.duplicate()
+	copy.shuffle()
+	_display_card_list(copy)
+
+func _display_card_discard():
+	_display_card_list(card_discard)
+
+func _display_card_exile():
+	_display_card_list(card_exile)

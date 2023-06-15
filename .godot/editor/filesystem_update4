@@ -63,3 +63,5 @@ res://scripts/path_menu.gd
 res://statuses/bolster.tres
 res://statuses/critical.tres
 res://statuses/weakness.tres
+res://scenes/card_list_overlay.tscn
+res://scripts/card_list_overlay.gd

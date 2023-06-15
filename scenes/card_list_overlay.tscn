@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktfuo145upx6"]
+
+[ext_resource type="Script" path="res://scripts/card_list_overlay.gd" id="1_vcdwf"]
+
+[node name="CardListOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vcdwf")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 160.0
+offset_right = 1890.0
+offset_bottom = 1032.0
+horizontal_scroll_mode = 0
+
+[node name="SizeBox" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1850, 2.08165e-12)
+layout_mode = 2
+
+[node name="MenuBar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 128.0
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 1)
+
+[node name="CloseButton" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 1760.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 96.0
+text = "Back"
+
+[connection signal="pressed" from="MenuBar/CloseButton" to="." method="_on_close_button_pressed"]

@@ -57,7 +57,7 @@ scroll_active = false
 [node name="CardArea" type="Node2D" parent="."]
 position = Vector2(960, 872)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HandArea" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 280.0
 offset_top = 712.0
@@ -65,3 +65,25 @@ offset_right = 1640.0
 offset_bottom = 1048.0
 mouse_filter = 2
 color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="DeckButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 880.0
+offset_right = 224.0
+offset_bottom = 928.0
+text = "View Deck"
+
+[node name="DiscardButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 944.0
+offset_right = 224.0
+offset_bottom = 992.0
+text = "View Discard"
+
+[node name="ExileButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 1008.0
+offset_right = 224.0
+offset_bottom = 1056.0
+text = "View Exile"
