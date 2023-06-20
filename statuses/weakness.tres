@@ -13,3 +13,4 @@ status_triggers = PackedStringArray()
 status_effects = PackedStringArray("phys_atk-1+mod:neg")
 status_tick_down = 3
 status_flags = PackedStringArray()
+status_description = "Deal reduced damage for each stack of this status."

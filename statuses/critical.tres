@@ -13,3 +13,4 @@ status_triggers = PackedStringArray()
 status_effects = PackedStringArray("critical-0", "clear-all")
 status_tick_down = 3
 status_flags = PackedStringArray()
+status_description = "The next attack deals bonus damage proportional to the number of stacks of this status."

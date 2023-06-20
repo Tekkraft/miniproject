@@ -65,3 +65,8 @@ res://statuses/critical.tres
 res://statuses/weakness.tres
 res://scenes/card_list_overlay.tscn
 res://scripts/card_list_overlay.gd
+res://scripts/status_instance.gd
+res://scenes/tooltip_hover.tscn
+res://scripts/card.gd
+res://cards/duelist_cards/retreat.tres
+res://cards/elementalist_cards/fireblast.tres

@@ -13,3 +13,4 @@ status_triggers = PackedStringArray("counter-3")
 status_effects = PackedStringArray("status-1+id:critical", "clear-3")
 status_tick_down = 3
 status_flags = PackedStringArray()
+status_description = "Stack 3 of this status to gain 1 Critical."

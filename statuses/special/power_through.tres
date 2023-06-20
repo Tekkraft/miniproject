@@ -13,3 +13,4 @@ status_triggers = PackedStringArray("status_flag-1+flag:blocking")
 status_effects = PackedStringArray("power_through-10")
 status_tick_down = 3
 status_flags = PackedStringArray()
+status_description = "Cannot be afflicted by a blocking status condition, and instead takes 10 damage."

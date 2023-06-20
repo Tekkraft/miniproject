@@ -14,6 +14,7 @@ enum ActivationCondition {TURN_START, TURN_END, ON_STATUS_INCREASED, ON_NEW_STAT
 @export var status_effects : PackedStringArray
 @export var status_tick_down : TickDown
 @export var status_flags : PackedStringArray
+@export_multiline var status_description : String
 
 func _parse_triggers():
 	var return_array = []

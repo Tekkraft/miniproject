@@ -5,6 +5,8 @@ class_name Card
 enum CardTargetingType {SELECT, FREE}
 enum CardTargeting {MELEE, TARGET, TILE}
 enum CardAOE {SINGLE, CROSS, ROW, RANK, ALL, CUSTOM}
+enum CardSkillType {MARTIAL, MYSTIC}
+enum CardActionType {ATTACK, DEFENSE, SUPPORT, ABILITY}
 
 @export var card_name : String
 @export var card_cost : int
@@ -15,6 +17,8 @@ enum CardAOE {SINGLE, CROSS, ROW, RANK, ALL, CUSTOM}
 @export var card_targeting : CardTargeting
 @export var card_aoe : CardAOE
 @export var card_targeting_modifier : String
+@export var card_skill_type : CardSkillType
+@export var card_action_type : CardActionType
 
 func _parse_effects():
 	var return_array = []

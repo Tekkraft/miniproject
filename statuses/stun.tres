@@ -13,3 +13,4 @@ status_triggers = PackedStringArray()
 status_effects = PackedStringArray("cancel_intent-1")
 status_tick_down = 3
 status_flags = PackedStringArray("blocking")
+status_description = "The next action is canceled, and instead nothing is done."

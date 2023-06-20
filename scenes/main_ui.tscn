@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dwyxdclt02hos"]
+[gd_scene load_steps=2 format=3 uid="uid://dwyxdclt02hos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkmlj"]
+size = Vector2(1360, 336)
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -55,7 +58,12 @@ fit_content = true
 scroll_active = false
 
 [node name="CardArea" type="Node2D" parent="."]
-position = Vector2(960, 872)
+position = Vector2(960, 880)
+
+[node name="DeadZone" type="Area2D" parent="CardArea"]
+
+[node name="DeadZoneCollider" type="CollisionShape2D" parent="CardArea/DeadZone"]
+shape = SubResource("RectangleShape2D_bkmlj")
 
 [node name="HandArea" type="ColorRect" parent="."]
 layout_mode = 0

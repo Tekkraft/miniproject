@@ -13,3 +13,4 @@ status_triggers = PackedStringArray()
 status_effects = PackedStringArray("stack_damage-1")
 status_tick_down = 3
 status_flags = PackedStringArray()
+status_description = "Take damage equal to the stacks of this status when attacking."

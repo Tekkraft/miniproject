@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://csvixldk425h7"]
+
+[ext_resource type="Texture2D" uid="uid://3si8ckjmgwhr" path="res://sprites/HoverBase.png" id="1_lydgc"]
+
+[node name="TooltipHover" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_lydgc")
+
+[node name="TooltipTitle" type="RichTextLabel" parent="."]
+offset_left = -124.0
+offset_top = -60.0
+offset_right = 124.0
+offset_bottom = -28.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 22
+text = "Tooltip Title"
+
+[node name="TooltipDescription" type="RichTextLabel" parent="."]
+offset_left = -124.0
+offset_top = -28.0
+offset_right = 124.0
+offset_bottom = 60.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Tooltip Description"

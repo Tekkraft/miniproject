@@ -114,8 +114,8 @@ func _create_status(status_data : Status, counter):
 	
 	for i in power_through_status.size():
 		var status = power_through_status[i]
-		var passed = get_node("/root/BattleHandler")._validate_status_condition_context(status, status_data)
-		if not passed:
+		var activated = get_node("/root/BattleHandler")._validate_status_condition_context(status, status_data)
+		if activated:
 			_take_damage(power_through_damage[i])
 			return
 	

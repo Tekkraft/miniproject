@@ -13,6 +13,8 @@ var card_list_overlay = preload("res://scenes/card_list_overlay.tscn")
 var max_energy = 3
 var current_energy = 3
 
+var mouse_in_dead_zone = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -31,6 +33,9 @@ func _process(delta):
 
 func _setup(encounter_data : Encounter):
 	get_node("/root/MainUI/EnergyMeter/EnergyLabel").text = str(current_energy) + "/" + str(max_energy)
+	
+	get_node("../MainUI/CardArea/DeadZone").connect("mouse_entered", _dead_zone_entered)
+	get_node("../MainUI/CardArea/DeadZone").connect("mouse_exited", _dead_zone_exited)
 	
 	var unit_list = encounter_data._get_position_dictionary()
 	for coord in unit_list:
@@ -96,6 +101,8 @@ func _play_card(source):
 	var data = source.card_data
 	var effects = data._parse_effects()
 	var return_data = []
+	if mouse_in_dead_zone:
+		return
 	if current_energy < data.card_cost:
 		return
 	if data.card_targeting_type == Card.CardTargetingType.FREE:
@@ -291,7 +298,7 @@ func _activate_effects(origin, effects, target):
 						for value in returns:
 							match value[0]:
 								"critical":
-									crit_mod += value[1] + 1
+									crit_mod += value[1]
 								"phys_atk":
 									modified_damage += value[1]
 						if status_data.status_tick_down == Status.TickDown.WHEN_ACTIVATED and returns[0][1] == 1:
@@ -336,6 +343,9 @@ func _activate_effects(origin, effects, target):
 					target._create_status(status_data, int(effect.value))
 			"exhaust_self":
 				activation_return.append(["exhaust_self", int(effect.value)])
+	
+	for status in origin.get_node("Status").get_children():
+		status.activated = false
 	
 	return activation_return
 
@@ -419,6 +429,9 @@ func _activate_enemies():
 				status._decrement_counter(1)
 
 func _activate_status_effects(status, effects, target):
+	if status.activated:
+		return [["activation", 0]]
+	status.activated = true
 	if not _validate_status_condition(status):
 		return [["activation", 0]]
 	var activation_return = [["activation", 1]]
@@ -540,9 +553,9 @@ func _validate_status_condition_context(status, context):
 					print("ERR>No flag modifier.")
 					continue
 				for flag in context.status_flags:
-					if flag != modifiers_dictionary["flag"]:
-						return false
-	return true
+					if flag == modifiers_dictionary["flag"]:
+						return true
+	return false
 
 func _display_card_list(card_list):
 	var list = card_list_overlay.instantiate()
@@ -561,3 +574,9 @@ func _display_card_discard():
 
 func _display_card_exile():
 	_display_card_list(card_exile)
+
+func _dead_zone_entered():
+	mouse_in_dead_zone = true
+
+func _dead_zone_exited():
+	mouse_in_dead_zone = false

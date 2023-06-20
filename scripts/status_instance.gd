@@ -3,6 +3,10 @@ extends Node2D
 var status_data : Status
 var status_counter : int
 
+var hover_resource = preload("res://scenes/tooltip_hover.tscn")
+
+var activated = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,5 +29,19 @@ func _decrement_counter(value : int):
 	status_counter -= value
 	get_node("StatusCounter").text = str(status_counter)
 	if status_counter <= 0:
-		self.get_parent().remove_child(self)
+		var parent = self.get_parent()
+		parent.remove_child(self)
+		parent.get_parent()._realign_statuses()
 		self.queue_free()
+
+func _on_status_hover_mouse_entered():
+	var tooltip = hover_resource.instantiate() as Node2D
+	tooltip.get_node("TooltipTitle").text = status_data.status_name
+	tooltip.get_node("TooltipDescription").text = status_data.status_description
+	get_node("Hover").add_child(tooltip)
+	tooltip.position += Vector2(128,64) * 1.1
+
+func _on_status_hover_mouse_exited():
+	for node in get_node("Hover").get_children():
+		get_node("Hover").remove_child(node)
+		node.queue_free()

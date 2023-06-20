@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/card_list_overlay.gd" id="1_vcdwf"]
 
 [node name="CardListOverlay" type="Control"]
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
