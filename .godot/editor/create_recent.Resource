@@ -1,3 +1,4 @@
+Relic
 CombatEncounter
 Status
 Unit

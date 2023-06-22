@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c4ejghskndx4i"]
 
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_soh1x"]
+[ext_resource type="Texture2D" uid="uid://cmug2jtk6x5o5" path="res://sprites/card_art/general/CardArtAttack.png" id="1_3e4u3"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="2_kdg2p"]
 
 [resource]
 script = ExtResource("2_kdg2p")
 card_name = "Attack"
 card_cost = 1
-card_sprite = ExtResource("1_soh1x")
+card_sprite = ExtResource("1_3e4u3")
 card_description = "Deal 8 damage."
 card_effects = PackedStringArray("damage-8")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0

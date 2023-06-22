@@ -2,6 +2,8 @@ extends Node
 
 var current_deck = []
 
+var current_relics = []
+
 var current_hp = 100
 
 var martial_class : CharacterClass
@@ -32,7 +34,7 @@ func _process(delta):
 	pass
 
 func _setup_encounters():
-	current_encounter_count = 0
+	current_encounter_count = 1
 	encounters_to_boss = 8
 
 func _get_encounter_list():

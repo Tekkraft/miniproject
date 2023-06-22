@@ -1,3 +1,4 @@
+res://relics/
 res://scenes
 res://encounters/boss_encounters/
 res://statuses/special/
@@ -19,4 +20,3 @@ res://cards/arcanist_cards/
 res://cards/duelist_cards/
 res://classes
 res://classes/
-res://encounters/

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp416qa6b5s2m"]
+[gd_scene load_steps=6 format=3 uid="uid://cp416qa6b5s2m"]
 
 [ext_resource type="Script" path="res://scripts/card_instance.gd" id="1_6ebdn"]
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="2_pak13"]
 [ext_resource type="Texture2D" uid="uid://bp1xosxa3qojc" path="res://sprites/CardBaseV2.png" id="2_r7abj"]
+[ext_resource type="Texture2D" uid="uid://cmug2jtk6x5o5" path="res://sprites/card_art/general/CardArtAttack.png" id="3_aeenu"]
+[ext_resource type="Texture2D" uid="uid://b0djli8ceiqhf" path="res://sprites/targeting_icons/CardTargetingSelf.png" id="4_v0sl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddpse"]
 size = Vector2(192, 288)
@@ -12,11 +13,12 @@ z_index = 2
 script = ExtResource("1_6ebdn")
 
 [node name="CardBase" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_r7abj")
 
 [node name="CardArt" type="Sprite2D" parent="."]
-position = Vector2(0, -23)
-texture = ExtResource("2_pak13")
+position = Vector2(2.08165e-12, -48)
+texture = ExtResource("3_aeenu")
 
 [node name="CardTitle" type="RichTextLabel" parent="."]
 anchors_preset = 5
@@ -52,6 +54,65 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 18
 text = "Test"
+
+[node name="CardCost" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -142.0
+offset_right = -6.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "1"
+
+[node name="CardType" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+text = "Martial Attack"
+
+[node name="CardTargeting" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = 2.0
+offset_right = 147.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+text = "Melee Rank"
+
+[node name="CardTargetingIcon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(80, 16)
+texture = ExtResource("4_v0sl3")
 
 [node name="CardArea" type="Area2D" parent="."]
 

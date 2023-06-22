@@ -20,6 +20,15 @@ enum CardActionType {ATTACK, DEFENSE, SUPPORT, ABILITY}
 @export var card_skill_type : CardSkillType
 @export var card_action_type : CardActionType
 
+var self_targeting = preload("res://sprites/targeting_icons/CardTargetingSelf.png")
+var all_targeting = preload("res://sprites/targeting_icons/CardTargetingAll.png")
+var aoe_targeting = preload("res://sprites/targeting_icons/CardTargetingAOE.png")
+var melee_targeting = preload("res://sprites/targeting_icons/CardTargetingMelee.png")
+var ranged_targeting = preload("res://sprites/targeting_icons/CardTargetingRanged.png")
+var row_targeting = preload("res://sprites/targeting_icons/CardTargetingRowAny.png")
+var rank_targeting = preload("res://sprites/targeting_icons/CardTargetingRankAny.png")
+var front_rank_targeting = preload("res://sprites/targeting_icons/CardTargetingMeleeRank.png")
+
 func _parse_effects():
 	var return_array = []
 	var parser = RegEx.new()
@@ -31,6 +40,50 @@ func _parse_effects():
 		else:
 			print("ERR>Invalid card effect: " + effect)
 	return return_array
+
+func _get_targeting_icon():
+	if card_targeting_type == CardTargetingType.FREE:
+		return self_targeting
+	match card_targeting:
+		CardTargeting.MELEE:
+			if card_aoe == CardAOE.RANK:
+				return front_rank_targeting
+			else:
+				return melee_targeting
+		CardTargeting.TARGET, CardTargeting.TILE:
+			match card_aoe:
+				CardAOE.SINGLE:
+					return ranged_targeting
+				CardAOE.CROSS:
+					return aoe_targeting
+				CardAOE.ROW:
+					return row_targeting
+				CardAOE.RANK:
+					return rank_targeting
+				CardAOE.ALL:
+					return all_targeting
+
+func _get_targeting_text():
+	if card_targeting_type == CardTargetingType.FREE:
+		return "Self"
+	match card_targeting:
+		CardTargeting.MELEE:
+			if card_aoe == CardAOE.RANK:
+				return "Front Rank"
+			else:
+				return "Melee"
+		CardTargeting.TARGET, CardTargeting.TILE:
+			match card_aoe:
+				CardAOE.SINGLE:
+					return "Ranged"
+				CardAOE.CROSS:
+					return "Cross AOE"
+				CardAOE.ROW:
+					return "Any Row"
+				CardAOE.RANK:
+					return "Any Rank"
+				CardAOE.ALL:
+					return "All Enemies"
 
 class CardEffect:
 	var action : String

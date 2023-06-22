@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://db5god4a8erwo"]
 
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_0iioe"]
+[ext_resource type="Texture2D" uid="uid://3gcgth0to6yl" path="res://sprites/card_art/warrior/CardArtDefend.png" id="1_eyei4"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_ih6ov"]
 
 [resource]
 script = ExtResource("1_ih6ov")
 card_name = "Defend"
 card_cost = 1
-card_sprite = ExtResource("1_0iioe")
+card_sprite = ExtResource("1_eyei4")
 card_description = "Gain 8 shield."
 card_effects = PackedStringArray("shield-8")
 card_targeting_type = 1

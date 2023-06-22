@@ -70,3 +70,10 @@ res://scenes/tooltip_hover.tscn
 res://scripts/card.gd
 res://cards/duelist_cards/retreat.tres
 res://cards/elementalist_cards/fireblast.tres
+res://cards/basic_attack.tres
+res://statuses/chill.tres
+res://statuses/freeze.tres
+res://scenes/relic.tscn
+res://scripts/relic.gd
+res://scripts/relic_instance.gd
+res://relics/steel_sword.tres

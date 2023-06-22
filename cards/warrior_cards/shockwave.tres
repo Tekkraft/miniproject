@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://sd2nfonfurk"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_cp8sl"]
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_h4ysj"]
+[ext_resource type="Texture2D" uid="uid://d3l7iw1ksm6r5" path="res://sprites/card_art/warrior/CardArtShockwave.png" id="1_wyjvw"]
 
 [resource]
 script = ExtResource("1_cp8sl")
 card_name = "Shockwave"
 card_cost = 1
-card_sprite = ExtResource("1_h4ysj")
+card_sprite = ExtResource("1_wyjvw")
 card_description = "Deal 5 damage."
 card_effects = PackedStringArray("damage-5")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 2
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0

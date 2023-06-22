@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://wsnegx4u4tu0"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_cmspr"]
+[ext_resource type="Texture2D" uid="uid://dng8kg1mn3s0p" path="res://sprites/statuses/StatusIconsChill.png" id="2_wey1g"]
+
+[resource]
+script = ExtResource("1_cmspr")
+status_name = "Chill"
+status_icon = ExtResource("2_wey1g")
+status_class = 1
+status_activation = 4
+status_triggers = PackedStringArray("counter-3")
+status_effects = PackedStringArray("status-1+id:freeze", "clear-3")
+status_tick_down = 3
+status_flags = PackedStringArray()
+status_description = "Stack 3 of this status to gain 1 Freeze."

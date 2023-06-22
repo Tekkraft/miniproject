@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://y3w7r60ex3fv"]
+
+[ext_resource type="Script" path="res://scripts/relic.gd" id="1_rcbfr"]
+[ext_resource type="Texture2D" uid="uid://tknp6hkfyao5" path="res://sprites/relics/RelicIconsSteelSword.png" id="1_teo7q"]
+
+[resource]
+script = ExtResource("1_rcbfr")
+relic_name = "Steel Sword"
+relic_icon = ExtResource("1_teo7q")
+relic_activation_class = 4
+relic_turn_condition = 1
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray("turn_count-1")
+relic_effects = PackedStringArray("status-1+id:strength")
+relic_description = "Gain 1 Strength at the start of combat."

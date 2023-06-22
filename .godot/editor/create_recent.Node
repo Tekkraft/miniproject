@@ -1,5 +1,5 @@
-RichTextLabel
 Sprite2D
+RichTextLabel
 Node2D
 CollisionShape2D
 Area2D

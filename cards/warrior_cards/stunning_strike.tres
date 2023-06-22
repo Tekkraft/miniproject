@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ci246te8r3q76"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_t2qjd"]
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_vb18w"]
+[ext_resource type="Texture2D" uid="uid://b0xl1k7kp0buv" path="res://sprites/card_art/warrior/CardArtStunningStrike.png" id="1_wpwrf"]
 
 [resource]
 script = ExtResource("1_t2qjd")
 card_name = "Stunning Strike"
 card_cost = 2
-card_sprite = ExtResource("1_vb18w")
+card_sprite = ExtResource("1_wpwrf")
 card_description = "Deal 7 damage.
 Inflict 1 Stun."
 card_effects = PackedStringArray("damage-7", "status-1+id:stun")
@@ -15,3 +15,5 @@ card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0

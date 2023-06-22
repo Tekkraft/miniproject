@@ -13,6 +13,8 @@ var card_list_overlay = preload("res://scenes/card_list_overlay.tscn")
 var max_energy = 3
 var current_energy = 3
 
+var current_turn = 0
+
 var mouse_in_dead_zone = false
 
 # Called when the node enters the scene tree for the first time.
@@ -389,6 +391,7 @@ func _end_enemy_turn():
 func _start_player_turn():
 	get_node("../BattleMap/Player")._clear_shields()
 	_draw_hand()
+	current_turn += 1
 	current_energy = max_energy
 	get_node("/root/MainUI/EnergyMeter/EnergyLabel").text = str(current_energy) + "/" + str(max_energy)
 

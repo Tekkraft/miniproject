@@ -24,6 +24,26 @@ func _setup(card_data : Card):
 	get_node("CardTitle").text = card_data.card_name 
 	get_node("CardDescription").text = card_data.card_description 
 	get_node("CardArt").texture = card_data.card_sprite
+	get_node("CardCost").text = str(card_data.card_cost)
+	var card_type = ""
+	match card_data.card_skill_type:
+		Card.CardSkillType.MARTIAL:
+			card_type += "Martial"
+		Card.CardSkillType.MYSTIC:
+			card_type += "Mystic"
+	card_type += " "
+	match card_data.card_action_type:
+		Card.CardActionType.ATTACK:
+			card_type += "Attack"
+		Card.CardActionType.DEFENSE:
+			card_type += "Defense"
+		Card.CardActionType.SUPPORT:
+			card_type += "Support"
+		Card.CardActionType.ABILITY:
+			card_type += "Ability"
+	get_node("CardType").text = card_type
+	get_node("CardTargetingIcon").texture = card_data._get_targeting_icon()
+	get_node("CardTargeting").text = card_data._get_targeting_text()
 
 func _input(event):
 	if event is InputEventMouseButton:

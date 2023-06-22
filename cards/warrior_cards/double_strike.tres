@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b1fsllqnwrci6"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_3crqp"]
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_8unqx"]
+[ext_resource type="Texture2D" uid="uid://cytix22shlr2q" path="res://sprites/card_art/warrior/CardArtDoubleStrike.png" id="1_i5sme"]
 
 [resource]
 script = ExtResource("1_3crqp")
 card_name = "Double Strike"
 card_cost = 1
-card_sprite = ExtResource("1_8unqx")
+card_sprite = ExtResource("1_i5sme")
 card_description = "Deal 6 damage twice."
 card_effects = PackedStringArray("damage-6", "damage-6")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0
