@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0mi1jjavj4mm"]
+[gd_scene load_steps=5 format=3 uid="uid://d0mi1jjavj4mm"]
 
 [ext_resource type="Script" path="res://scripts/unit_instance.gd" id="1_kqhge"]
 [ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="2_4i5t6"]
 [ext_resource type="Texture2D" uid="uid://bey74p6dc21c2" path="res://sprites/intents/EnemyIntentsAttack.png" id="3_733ci"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik8u3"]
+size = Vector2(32, 16)
 
 [node name="Unit" type="Node2D"]
 scale = Vector2(0.6, 0.6)
@@ -46,5 +49,17 @@ mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 46
 text = "123456"
 
+[node name="IntentArea" type="Area2D" parent="Intent"]
+
+[node name="IntentShape" type="CollisionShape2D" parent="Intent/IntentArea"]
+position = Vector2(2.08165e-12, -32)
+shape = SubResource("RectangleShape2D_ik8u3")
+
+[node name="Hover" type="Node2D" parent="Intent"]
+z_index = 4
+
 [node name="Status" type="Node2D" parent="."]
 position = Vector2(-24, 38)
+
+[connection signal="mouse_entered" from="Intent/IntentArea" to="." method="_on_intent_area_mouse_entered"]
+[connection signal="mouse_exited" from="Intent/IntentArea" to="." method="_on_intent_area_mouse_exited"]

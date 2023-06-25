@@ -1,8 +1,8 @@
-Sprite2D
-RichTextLabel
 Node2D
 CollisionShape2D
 Area2D
+Sprite2D
+RichTextLabel
 Button
 ColorRect
 Control

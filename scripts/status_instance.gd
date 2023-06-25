@@ -7,6 +7,9 @@ var hover_resource = preload("res://scenes/tooltip_hover.tscn")
 
 var activated = false
 
+var queued_increment = 0
+var queued_decrement = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -33,6 +36,18 @@ func _decrement_counter(value : int):
 		parent.remove_child(self)
 		parent.get_parent()._realign_statuses()
 		self.queue_free()
+
+func _queue_decrement_counter(value : int):
+	queued_decrement += value
+
+func _queue_increment_counter(value : int):
+	queued_increment += value
+
+func _trigger_queue():
+	_increment_counter(queued_increment)
+	queued_increment = 0
+	_decrement_counter(queued_decrement)
+	queued_decrement = 0
 
 func _on_status_hover_mouse_entered():
 	var tooltip = hover_resource.instantiate() as Node2D

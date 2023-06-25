@@ -49,5 +49,5 @@ func _on_depart_button_pressed():
 	RunHandler.martial_class = selected_martial
 	RunHandler.mystic_class = selected_mystic
 	RunHandler._setup_encounters()
-	RunHandler.current_relics = []
+	RunHandler.current_relics = [load("res://relics/steel_sword.tres"), load("res://relics/steel_sword.tres")]
 	SceneHandler._load_run()

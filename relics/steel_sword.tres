@@ -7,7 +7,7 @@
 script = ExtResource("1_rcbfr")
 relic_name = "Steel Sword"
 relic_icon = ExtResource("1_teo7q")
-relic_activation_class = 4
+relic_activation_class = 0
 relic_turn_condition = 1
 relic_status_condition = 0
 relic_combat_condition = 0

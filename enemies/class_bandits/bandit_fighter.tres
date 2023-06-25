@@ -34,3 +34,4 @@ hp = 20
 actions = SubResource("Resource_kog5t")
 sprite = ExtResource("4_d67ds")
 starting_hostility = false
+starting_statuses = Array[Resource("res://scripts/status.gd")]([])

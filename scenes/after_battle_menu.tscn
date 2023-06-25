@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_mydhs")
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.34902, 0.34902, 0.34902, 1)
@@ -25,12 +26,15 @@ offset_bottom = 632.0
 
 [node name="CardDock0" type="Node2D" parent="CardSelectPanel"]
 position = Vector2(256, 300)
+scale = Vector2(1.5, 1.5)
 
 [node name="CardDock1" type="Node2D" parent="CardSelectPanel"]
 position = Vector2(768, 300)
+scale = Vector2(1.5, 1.5)
 
 [node name="CardDock2" type="Node2D" parent="CardSelectPanel"]
 position = Vector2(1280, 300)
+scale = Vector2(1.5, 1.5)
 
 [node name="Card0Button" type="Button" parent="CardSelectPanel"]
 layout_mode = 0
@@ -41,6 +45,7 @@ offset_bottom = 584.0
 text = "Select Card"
 
 [node name="Card1Button" type="Button" parent="CardSelectPanel"]
+layout_mode = 0
 offset_left = 640.0
 offset_top = 536.0
 offset_right = 896.0
@@ -48,6 +53,7 @@ offset_bottom = 584.0
 text = "Select Card"
 
 [node name="Card2Button" type="Button" parent="CardSelectPanel"]
+layout_mode = 0
 offset_left = 1152.0
 offset_top = 536.0
 offset_right = 1408.0
@@ -63,6 +69,7 @@ offset_bottom = 80.0
 text = "Skip Card"
 
 [node name="ViewDeckButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1600.0
 offset_top = 96.0
 offset_right = 1856.0

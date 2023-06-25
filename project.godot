@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneHandler="*res://scripts/scene_handler.gd"
 DataHandler="*res://scripts/data_handler.gd"
 RunHandler="*res://scripts/run_handler.gd"
+LanguageHandler="*res://scripts/language_handler.gd"
 
 [display]
 
