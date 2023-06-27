@@ -19,5 +19,6 @@ status_effects = PackedStringArray("phys_def-1+mod:pos")
 status_tick_down = 3
 status_tick_down_amount = 0
 status_tick_down_value = 1
+status_tick_down_instant = true
 status_flags = PackedStringArray()
-status_description = "Take 1 less damage for each stack of this status."
+status_description = "Take 1 less physical damage for each stack of this status."

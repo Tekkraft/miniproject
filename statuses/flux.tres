@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cnor2ki4h7yq6"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_054vl"]
+[ext_resource type="Texture2D" uid="uid://beuxp5gcfsy5f" path="res://sprites/statuses/StatusIconsFlux.png" id="2_moqef"]
+
+[resource]
+script = ExtResource("1_054vl")
+status_name = "Flux"
+status_icon = ExtResource("2_moqef")
+status_class = 1
+status_activation_class = 2
+status_turn_condition = 0
+status_status_condition = 0
+status_combat_condition = 1
+status_card_condition = 0
+status_encounter_condition = 0
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("mag_def-1+mod:neg")
+status_tick_down = 3
+status_tick_down_amount = 0
+status_tick_down_value = 1
+status_tick_down_instant = true
+status_flags = PackedStringArray()
+status_description = "Take increased magic damage equal to the stacks of this status."

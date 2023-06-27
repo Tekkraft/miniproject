@@ -6,3 +6,4 @@ class_name CharacterClass
 @export_multiline var class_description : String
 @export var class_start_cards : Array[Card]
 @export var class_pool_cards : Array[Card]
+@export var class_starting_hp : int

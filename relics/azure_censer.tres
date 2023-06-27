@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://423xcwbrytc1"]
+
+[ext_resource type="Texture2D" uid="uid://bdgg4ndvlkq8o" path="res://sprites/relics/RelicIconsAzureCenser.png" id="1_uou4a"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_tl6w2"]
+
+[resource]
+script = ExtResource("2_tl6w2")
+relic_name = "Azure Censer"
+relic_icon = ExtResource("1_uou4a")
+relic_activation_class = 0
+relic_turn_condition = 2
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray("turn_count-1")
+relic_effects = PackedStringArray("cleanse-1+type:debuff")
+relic_description = "At the end of your first turn, cleanse all debuffs."

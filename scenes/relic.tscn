@@ -29,7 +29,6 @@ shape = SubResource("RectangleShape2D_ycpe4")
 
 [node name="Hover" type="Node2D" parent="."]
 z_index = 4
-scale = Vector2(4, 4)
 
 [connection signal="mouse_entered" from="RelicHover" to="." method="_on_relic_hover_mouse_entered"]
 [connection signal="mouse_exited" from="RelicHover" to="." method="_on_relic_hover_mouse_exited"]

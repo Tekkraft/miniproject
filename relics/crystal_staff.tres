@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://duwio2u4gcvq3"]
+
+[ext_resource type="Texture2D" uid="uid://dxsycdkir44li" path="res://sprites/relics/RelicIconsCrystalStaff.png" id="1_q8gi8"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_8secp"]
+
+[resource]
+script = ExtResource("2_8secp")
+relic_name = "Crystal Staff"
+relic_icon = ExtResource("1_q8gi8")
+relic_activation_class = 0
+relic_turn_condition = 1
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray("turn_count-1")
+relic_effects = PackedStringArray("status-1+id:clarity")
+relic_description = "Gain 1 Clarity at the start of combat."

@@ -19,5 +19,6 @@ status_effects = PackedStringArray("status-1+id:freeze")
 status_tick_down = 2
 status_tick_down_amount = 0
 status_tick_down_value = 3
+status_tick_down_instant = true
 status_flags = PackedStringArray()
 status_description = "Stack 3 of this status to gain 1 Freeze."

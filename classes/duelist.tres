@@ -10,3 +10,4 @@ class_name_var = "Duelist"
 class_description = "The Duelist is a martial class with the ability to generate consistent critical hits and dodge attacks."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_kvmuq"), ExtResource("2_uowhw")])
 class_pool_cards = Array[Resource("res://scripts/card.gd")]([])
+class_starting_hp = 30

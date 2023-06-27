@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://c68ljqtqeluco"]
+
+[ext_resource type="Texture2D" uid="uid://c0yy1mu2h7tud" path="res://sprites/relics/RelicIconsBurningBracer.png" id="1_u6lpq"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_db8v6"]
+
+[resource]
+script = ExtResource("2_db8v6")
+relic_name = "Burning Bracer"
+relic_icon = ExtResource("1_u6lpq")
+relic_activation_class = 3
+relic_turn_condition = 0
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 4
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray()
+relic_effects = PackedStringArray("damage-10+target:all_enemies,type:magic")
+relic_description = "Whenever you exhaust a card, deal 10 magic damage to all enemies."

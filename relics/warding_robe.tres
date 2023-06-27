@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://brjgvtqppdekk"]
+
+[ext_resource type="Texture2D" uid="uid://c4adpn4xuuwet" path="res://sprites/relics/RelicIconsWardingRobe.png" id="1_54xch"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_w0rid"]
+
+[resource]
+script = ExtResource("2_w0rid")
+relic_name = "Warding Robe"
+relic_icon = ExtResource("1_54xch")
+relic_activation_class = 0
+relic_turn_condition = 1
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray("turn_count-1")
+relic_effects = PackedStringArray("status-1+id:warding")
+relic_description = "Gain 1 Warding at the start of combat."

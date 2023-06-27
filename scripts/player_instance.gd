@@ -17,9 +17,9 @@ func _process(delta):
 
 func _setup():
 	current_hp = RunHandler.current_hp
+	max_hp = RunHandler.max_hp
 	get_node("HealthBar").max_value = max_hp
 	_update_health_label()
-
 
 func _take_damage(damage : int):
 	if damage < current_shield:

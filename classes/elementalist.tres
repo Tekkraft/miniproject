@@ -10,3 +10,4 @@ class_name_var = "Elementalist"
 class_description = "The Elementalist is a mystic class with good access to powerful AOE spells and statuses."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_a2y7c"), ExtResource("2_lp28t")])
 class_pool_cards = Array[Resource("res://scripts/card.gd")]([])
+class_starting_hp = 40

@@ -3,6 +3,23 @@ extends Node
 var martial_class_list = [] 
 var mystic_class_list = []
 
+var relic_0 = preload("res://relics/steel_sword.tres")
+
+var encounter_0 = preload("res://encounters/combat_encounters/rat_swarm.tres")
+var encounter_1 = preload("res://encounters/combat_encounters/bandit_0.tres")
+var encounter_2 = preload("res://encounters/combat_encounters/bandit_1.tres")
+
+var elite_encounter_0 = preload("res://encounters/combat_encounters/bandit_elite_0.tres")
+
+var boss_encounter_0 = preload("res://encounters/boss_encounters/black_knight.tres")
+
+var general_relic_pool = [relic_0]
+
+var early_encounters = [encounter_0, encounter_1, encounter_2]
+var mid_encounters = [encounter_0, encounter_0, encounter_0, elite_encounter_0]
+var late_encounters = [encounter_1, encounter_2, elite_encounter_0]
+var boss_encounters = [boss_encounter_0]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var parser = XMLParser.new()

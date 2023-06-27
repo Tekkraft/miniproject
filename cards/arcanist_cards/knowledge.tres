@@ -14,3 +14,5 @@ card_targeting_type = 1
 card_targeting = 0
 card_aoe = 0
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0

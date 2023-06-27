@@ -45,9 +45,9 @@ func _on_depart_button_pressed():
 		for i in 2:
 			deck.append(card)
 	RunHandler.current_deck = deck.duplicate()
-	RunHandler.current_hp = 100
+	RunHandler._setup_hp(selected_martial.class_starting_hp + selected_mystic.class_starting_hp)
 	RunHandler.martial_class = selected_martial
 	RunHandler.mystic_class = selected_mystic
 	RunHandler._setup_encounters()
-	RunHandler.current_relics = [load("res://relics/steel_sword.tres"), load("res://relics/steel_sword.tres")]
+	RunHandler._setup_relics()
 	SceneHandler._load_run()

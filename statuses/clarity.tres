@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cupvca2ogfogk"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_je0un"]
+[ext_resource type="Texture2D" uid="uid://c2tcnay0ba5pn" path="res://sprites/statuses/StatusIconsClarity.png" id="2_ynvb4"]
+
+[resource]
+script = ExtResource("1_je0un")
+status_name = "Clarity"
+status_icon = ExtResource("2_ynvb4")
+status_class = 0
+status_activation_class = 2
+status_turn_condition = 0
+status_status_condition = 0
+status_combat_condition = 2
+status_card_condition = 0
+status_encounter_condition = 0
+status_triggers = PackedStringArray()
+status_effects = PackedStringArray("mag_atk-1+mod:pos")
+status_tick_down = 3
+status_tick_down_amount = 0
+status_tick_down_value = 1
+status_tick_down_instant = true
+status_flags = PackedStringArray()
+status_description = "Deal increased magic damage equal to the stacks of this status."

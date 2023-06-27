@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://6k3q4625gmc7"]
+
+[ext_resource type="Texture2D" uid="uid://bmrqway3hagdx" path="res://sprites/relics/RelicIconsMendingBangle.png" id="1_sxm5m"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_e7glv"]
+
+[resource]
+script = ExtResource("2_e7glv")
+relic_name = "Mending Bangle"
+relic_icon = ExtResource("1_sxm5m")
+relic_activation_class = 4
+relic_turn_condition = 0
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 2
+relic_triggers = PackedStringArray()
+relic_effects = PackedStringArray("heal-10")
+relic_description = "Restore 10 HP at the end of combat."

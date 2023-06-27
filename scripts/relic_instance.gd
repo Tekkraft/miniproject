@@ -33,7 +33,8 @@ func _on_relic_hover_mouse_entered():
 	tooltip.get_node("TooltipTitle").text = relic_data.relic_name
 	tooltip.get_node("TooltipDescription").text = relic_data.relic_description
 	get_node("Hover").add_child(tooltip)
-	tooltip.position += Vector2(128,64) * 1.1
+	tooltip.position += Vector2(-128,64) * 1.1
+	tooltip.scale = Vector2(1/get_parent().scale.x, 1/get_parent().scale.y)
 
 func _on_relic_hover_mouse_exited():
 	for node in get_node("Hover").get_children():

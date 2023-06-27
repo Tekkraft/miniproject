@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://cgaj0o0xpqgf7"]
+
+[ext_resource type="Texture2D" uid="uid://c5d7xd8oq2n0i" path="res://sprites/relics/RelicIconsSteelArmor.png" id="1_x2ark"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_4ecrw"]
+
+[resource]
+script = ExtResource("2_4ecrw")
+relic_name = "Steel Armor"
+relic_icon = ExtResource("1_x2ark")
+relic_activation_class = 0
+relic_turn_condition = 1
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray("turn_count-1")
+relic_effects = PackedStringArray("status-1+id:bolster")
+relic_description = "Gain 1 Bolster at the start of combat."

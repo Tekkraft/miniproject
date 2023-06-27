@@ -18,6 +18,8 @@ var current_turn = 0
 
 var mouse_in_dead_zone = false
 
+var encounter_data : Encounter
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -25,16 +27,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var all_enemies = []
-	for list in enemy_map:
-		for enemy in list:
-			if enemy != null:
-				all_enemies.append(enemy)
-	if all_enemies.size() == 0:
-		RunHandler.current_hp = get_node("../BattleMap/Player").current_hp
-		SceneHandler._load_after_battle()
+	pass
 
 func _setup(encounter_data : Encounter):
+	self.encounter_data = encounter_data
 	get_node("/root/MainUI/EnergyMeter/EnergyLabel").text = str(current_energy) + "/" + str(max_energy)
 	
 	get_node("../MainUI/CardArea/DeadZone").connect("mouse_entered", _dead_zone_entered)
@@ -44,11 +40,7 @@ func _setup(encounter_data : Encounter):
 	for coord in unit_list:
 		_create_enemy(unit_list[coord], coord)
 	
-	var all_enemies = []
-	for list in enemy_map:
-		for enemy in list:
-			if enemy != null:
-				all_enemies.append(enemy)
+	var all_enemies = _get_all_enemies()
 	
 	var hostile_enemies = []
 	for enemy in all_enemies:
@@ -71,10 +63,10 @@ func _setup(encounter_data : Encounter):
 	
 	for card in RunHandler.current_deck:
 		_create_card(card)
-
+	
 	for relic in RunHandler.current_relics:
 		_create_relic(relic)
-
+	
 	_start_player_turn()
 
 
@@ -128,7 +120,6 @@ func _play_card(source):
 	var data = source.card_data
 	var effects = data._parse_effects()
 	var player = map.get_node("Player")
-	var return_data = []
 	var targets = []
 	if mouse_in_dead_zone:
 		return
@@ -137,7 +128,6 @@ func _play_card(source):
 	if data.card_targeting_type == Card.CardTargetingType.FREE:
 		current_energy -= data.card_cost
 		targets = [player]
-		#return_data.append_array(_activate_effects(player, effects, player))
 	else:
 		var tile = map._get_active_tile()
 		if tile == null:
@@ -150,56 +140,47 @@ func _play_card(source):
 		match data.card_aoe:
 			Card.CardAOE.SINGLE:
 				targets = [enemy]
-				#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy))
 			Card.CardAOE.CROSS:
 				if enemy != null:
 					targets.append(enemy)
-					#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy))
 				var tile_shift = tile + Vector2i(0,-1)
 				if tile_shift.y >= 0:
 					if enemy_map[tile_shift.x][tile_shift.y] != null:
 						targets.append(enemy_map[tile_shift.x][tile_shift.y])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[tile_shift.x][tile_shift.y]))
 				tile_shift = tile + Vector2i(0,1)
 				if tile_shift.y < enemy_map[0].size():
 					if enemy_map[tile_shift.x][tile_shift.y] != null:
 						targets.append(enemy_map[tile_shift.x][tile_shift.y])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[tile_shift.x][tile_shift.y]))
 				tile_shift = tile + Vector2i(-1,0)
 				if tile_shift.x >= 0:
 					if enemy_map[tile_shift.x][tile_shift.y] != null:
 						targets.append(enemy_map[tile_shift.x][tile_shift.y])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[tile_shift.x][tile_shift.y]))
 				tile_shift = tile + Vector2i(1,0)
 				if tile_shift.x < enemy_map.size():
 					if enemy_map[tile_shift.x][tile_shift.y] != null:
 						targets.append(enemy_map[tile_shift.x][tile_shift.y])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[tile_shift.x][tile_shift.y]))
 			Card.CardAOE.ROW:
 				for i in enemy_map.size():
 					if enemy_map[i][tile.y] != null:
 						targets.append(enemy_map[i][tile.y])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[i][tile.y]))
 			Card.CardAOE.RANK:
 				for i in enemy_map[tile.x].size():
 					if enemy_map[tile.x][i] != null:
 						targets.append(enemy_map[tile.x][i])
-						#return_data.append_array(_activate_effects(map.get_node("Player"), effects, enemy_map[tile.x][i]))
 			Card.CardAOE.ALL:
 				for row in enemy_map:
 					for target in row:
 						if target != null:
 							targets.append(target)
-							#return_data.append_array(_activate_effects(map.get_node("Player"), effects, target))
 			Card.CardAOE.CUSTOM:
 				pass
 	
-	_execute_actions(player, targets, effects)
+	var card_returns = _execute_actions(player, targets, effects)
 	
+	#Card effect resolution
 	var discard = true
-	for value in return_data:
-		if value[0] == "exhaust_self":
-			discard = false
+	if card_returns.has("exhaust_self"):
+		discard = false
 	
 	if discard:
 		_discard_card(source)
@@ -298,111 +279,36 @@ func _realign_cards():
 	for i in card_hand.size():
 		card_hand[i].position.x =  (i - card_hand.size() / 2.0) * (card_width + margin) + (card_width / 2) + 16
 
-func _activate_effects(origin, effects, target):
-	var target_dead = false
-	if not true:
-		return [["activation", 0]]
-	var activation_return = [["activation", 1]]
-	for effect in effects:
-		var modifiers = effect.modifier
-		var modifiers_array = modifiers.split(",")
-		var modifiers_dictionary = {}
-		for element in modifiers_array:
-			if element == null or element == "":
-				continue
-			var element_array = element.split(":")
-			if element_array.size() < 2:
-				print("ERR>Invalid modifier construction")
-				continue
-			modifiers_dictionary[element_array[0]] = element_array[1]
-		match effect.action:
-			"damage":
-				if target_dead:
-					continue
-				var base_damage = int(effect.value)
-				var modified_damage = base_damage
-				var crit_mod = 1
-				for status in origin.get_node("Status").get_children():
-					var status_data = status.status_data
-					if status_data.status_activation == LanguageHandler.CombatCondition.ON_ATTACKING:
-						var returns = _activate_status_effects(status, status_data._parse_effects(), origin)
-						for value in returns:
-							match value[0]:
-								"critical":
-									crit_mod += value[1]
-								"phys_atk":
-									modified_damage += value[1]
-						if status_data.status_tick_down == Status.TickDown.WHEN_ACTIVATED and returns[0][1] == 1:
-							status._decrement_counter(1)
-				modified_damage *= crit_mod
-				modified_damage = max(0, modified_damage)
-				var dead = target._take_damage(modified_damage)
-				if dead:
-					if target.name == "Player":
-						SceneHandler._load_menu()
-						return
-					_remove_enemy(target)
-					target_dead = true
-			"shield":
-				if modifiers_dictionary.has("target") and modifiers_dictionary["target"] == "self":
-					origin._gain_shield(int(effect.value))
-				else:
-					if target_dead:
-						continue
-					target._gain_shield(int(effect.value))
-			"heal":
-				if target_dead:
-					continue
-				target._restore_health(int(effect.value))
-			"draw":
-				for i in effect.value:
-					_draw_card()
-			"status":
-				if not modifiers_dictionary.has("id"):
-					print("ERR>No id modifier.")
-					continue
-				var status_data = load("res://statuses/" + modifiers_dictionary["id"] + ".tres")
-				if status_data == null:
-					print("ERR>No such status.")
-					continue
-				
-				if modifiers_dictionary.has("target") and modifiers_dictionary["target"] == "self":
-					origin._create_status(status_data, int(effect.value))
-				else:
-					if target_dead:
-						continue
-					target._create_status(status_data, int(effect.value))
-			"exhaust_self":
-				activation_return.append(["exhaust_self", int(effect.value)])
-	
-	for status in origin.get_node("Status").get_children():
-		status.activated = false
-	
-	return activation_return
-
-func _end_player_turn():
-	_discard_hand()
-	_start_enemy_turn()
-
-func _start_enemy_turn():
+func _get_all_enemies():
 	var all_enemies = []
 	for list in enemy_map:
 		for enemy in list:
 			if enemy != null:
 				all_enemies.append(enemy)
 	
+	return all_enemies
+
+func _end_player_turn():
+	var player = get_node("../BattleMap/Player")
+	_activate_external_effects(player, LanguageHandler.ActivationClass.TURN_CONDITION, LanguageHandler.TurnCondition.ON_TURN_END)
+	_discard_hand()
+	_start_enemy_turn()
+
+func _start_enemy_turn():
+	var all_enemies = _get_all_enemies()
+	
 	for enemy in all_enemies:
 		enemy._clear_shields()
+		_activate_external_effects(enemy, LanguageHandler.ActivationClass.TURN_CONDITION, LanguageHandler.TurnCondition.ON_TURN_START)
 	
 	_activate_enemies()
 	_end_enemy_turn()
 
 func _end_enemy_turn():
-	var all_enemies = []
-	for list in enemy_map:
-		for enemy in list:
-			if enemy != null:
-				all_enemies.append(enemy)
+	var all_enemies = _get_all_enemies()
+	
+	for enemy in all_enemies:
+		_activate_external_effects(enemy, LanguageHandler.ActivationClass.TURN_CONDITION, LanguageHandler.TurnCondition.ON_TURN_END)
 	
 	var hostile_enemies = []
 	for enemy in all_enemies:
@@ -418,182 +324,41 @@ func _end_enemy_turn():
 	_start_player_turn()
 
 func _start_player_turn():
-	get_node("../BattleMap/Player")._clear_shields()
+	#Check if player has won
+	var all_enemies = _get_all_enemies()
+	
+	if all_enemies.size() == 0:
+		RunHandler.current_hp = get_node("../BattleMap/Player").current_hp
+		if encounter_data.encounter_type == Encounter.EncounterType.ELITE:
+			RunHandler._get_random_relic()
+		SceneHandler._load_after_battle()
+	
+	#Normal start of turn effects
+	var player = get_node("../BattleMap/Player")
+	player._clear_shields()
 	_draw_hand()
 	current_turn += 1
 	current_energy = max_energy
 	get_node("/root/MainUI/EnergyMeter/EnergyLabel").text = str(current_energy) + "/" + str(max_energy)
+	
+	_activate_external_effects(player, LanguageHandler.ActivationClass.TURN_CONDITION, LanguageHandler.TurnCondition.ON_TURN_START)
 
 func _activate_enemies():
-	var all_enemies = []
-	for list in enemy_map:
-		for enemy in list:
-			if enemy != null:
-				all_enemies.append(enemy)
+	var all_enemies = _get_all_enemies()
 	
 	for enemy in all_enemies:
-		#for status in enemy.get_node("Status").get_children():
-		#	var status_data = status.status_data
-		#	if status_data.status_activation == LanguageHandler.TurnCondition.ON_TURN_START:
-		#		var returns = _activate_status_effects(status, status_data._parse_effects(), enemy)
-		#		if status_data.status_tick_down == Status.TickDown.WHEN_ACTIVATED and returns[0][1] == 1:
-		#			status._decrement_counter(1)
-		#	if status_data.status_tick_down == Status.TickDown.TURN_START:
-		#		status._decrement_counter(1)
-		
 		var targets = []
 		
 		var action = enemy.current_intent as Action
 		match action.action_type:
 			Action.ActionType.ATTACK, Action.ActionType.DEBUFF:
 				targets.append(get_node("../BattleMap/Player"))
-				#_activate_effects(enemy, action._parse_effects(), get_node("../BattleMap/Player"))
 			Action.ActionType.SHIELD, Action.ActionType.BUFF, Action.ActionType.RELOAD, Action.ActionType.CANCELED:
 				targets.append(enemy)
-				#_activate_effects(enemy, action._parse_effects(), enemy)
 			_:
 				print("ERR>Invalid Action Type: " + str(action.action_type))
 		
 		_execute_actions(enemy, targets, action._parse_effects())
-	
-	#for enemy in all_enemies:
-	#	for status in enemy.get_node("Status").get_children():
-	#		var status_data = status.status_data
-	#		if status_data.status_activation == LanguageHandler.TurnCondition.ON_TURN_END:
-	#			var returns = _activate_status_effects(status, status_data._parse_effects(), enemy)
-	#			if status_data.status_tick_down == Status.TickDown.WHEN_ACTIVATED and returns[0][1] == 1:
-	#				status._decrement_counter(1)
-	#		if status_data.status_tick_down == Status.TickDown.TURN_END:
-	#			status._decrement_counter(1)
-
-func _activate_status_effects(status, effects, target):
-	if status.activated:
-		return [["activation", 0]]
-	status.activated = true
-	if not _validate_status_condition(status):
-		return [["activation", 0]]
-	var activation_return = [["activation", 1]]
-	for effect in effects:
-		var modifiers = effect.modifier
-		var modifiers_array = modifiers.split(",")
-		var modifiers_dictionary = {}
-		for element in modifiers_array:
-			if element == null or element == "":
-				continue
-			var element_array = element.split(":")
-			if element_array.size() < 2:
-				print("ERR>Invalid modifier construction")
-				continue
-			modifiers_dictionary[element_array[0]] = element_array[1]
-		match effect.action:
-			"damage":
-				var dead = target._take_damage(int(effect.value))
-				if dead:
-					if target.name == "Player":
-						SceneHandler._load_menu()
-						return
-					_remove_enemy(target)
-			"stack_damage":
-				var dead = target._take_damage(status.status_counter)
-				if dead:
-					if target.name == "Player":
-						SceneHandler._load_menu()
-						return
-					_remove_enemy(target)
-			"critical":
-				activation_return.append(["critical", status.status_counter])
-			"clear":
-				var clear_val : int
-				match effect.value:
-					"all":
-						clear_val = status.status_counter
-					_:
-						clear_val = int(effect.value)
-				if not status == null:
-					status._decrement_counter(clear_val)
-			"status":
-				if not modifiers_dictionary.has("id"):
-					print("ERR>No id modifier.")
-					continue
-				var status_data = load("res://statuses/" + modifiers_dictionary["id"] + ".tres")
-				if status_data == null:
-					print("ERR>No such status.")
-					continue
-				target._create_status(status_data, int(effect.value))
-			"dodge":
-				activation_return.append(["dodge", effect.value])
-			"phys_atk":
-				var damage_modifier = int(effect.value) * status.status_counter
-				if not modifiers_dictionary.has("mod"):
-					print("ERR>No mod modifier.")
-					continue
-				match modifiers_dictionary["mod"]:
-					"neg":
-						damage_modifier *= -1
-				activation_return.append(["phys_atk", damage_modifier])
-			"phys_def":
-				var damage_modifier = int(effect.value) * status.status_counter
-				if not modifiers_dictionary.has("mod"):
-					print("ERR>No mod modifier.")
-					continue
-				match modifiers_dictionary["mod"]:
-					"neg":
-						damage_modifier *= -1
-				activation_return.append(["phys_def", damage_modifier])
-			"cancel_intent":
-				if target.is_in_group("Player"):
-					print("ERR>Player stun not implemented.")
-					continue
-				target._cancel_intent()
-				status._decrement_counter(status.status_counter)
-			"power_through":
-				activation_return.append(["power_through", int(effect.value)])
-	
-	return activation_return
-
-func _validate_status_condition(status):
-	var triggers = status.status_data._parse_triggers()
-	for condition in triggers:
-		var modifiers = condition.modifier
-		var modifiers_array = modifiers.split(",")
-		var modifiers_dictionary = {}
-		for element in modifiers_array:
-			if element == null or element == "":
-				continue
-			var element_array = element.split(":")
-			if element_array.size() < 2:
-				print("ERR>Invalid modifier construction")
-				continue
-			modifiers_dictionary[element_array[0]] = element_array[1]
-		match condition.action:
-			"counter":
-				if status.status_counter < int(condition.value):
-					return false
-	return true
-
-func _validate_status_condition_context(status, context):
-	var triggers = status.status_data._parse_triggers()
-	for condition in triggers:
-		var modifiers = condition.modifier
-		var modifiers_array = modifiers.split(",")
-		var modifiers_dictionary = {}
-		for element in modifiers_array:
-			if element == null or element == "":
-				continue
-			var element_array = element.split(":")
-			if element_array.size() < 2:
-				print("ERR>Invalid modifier construction")
-				continue
-			modifiers_dictionary[element_array[0]] = element_array[1]
-		match condition.action:
-			"status_flag":
-				if not modifiers_dictionary.has("flag"):
-					print("ERR>No flag modifier.")
-					continue
-				for flag in context.status_flags:
-					if flag == modifiers_dictionary["flag"]:
-						return true
-	return false
 
 func _display_card_list(card_list):
 	var list = card_list_overlay.instantiate()
@@ -648,14 +413,27 @@ func _execute_actions(attacker, targets, effects):
 		#Defender effects
 		var defender_returns = _execute_effects(target, target, defender_pre_effects, {})
 		var defender_execution_returns = defender_returns[0]
-		execution_returns.merge(defender_execution_returns)
 		var defender_carry_returns = defender_returns[1]
+		execution_returns.merge(defender_execution_returns)
 		#Card effects
 		var merged_returns = attacker_carry_returns.duplicate()
 		merged_returns.merge(defender_carry_returns)
 		var card_returns = _execute_effects(attacker, target, converted_effects, merged_returns)
+		var card_execution_returns = card_returns[0]
+		var card_carry_returns = card_returns[1]
+		execution_returns.merge(card_execution_returns)
+		
 		#Resolution effects
-		#NONE YET
+		#Trigger all queued status ticks
+		for status in target.get_node("Status").get_children():
+			status._trigger_queue()
+	
+	#Player resolution effects
+	#Trigger all queued status for player
+	for status in attacker.get_node("Status").get_children():
+		status._trigger_queue()
+	
+	return execution_returns
 
 func _generate_attacker_effects(unit):
 	var attacker_effects = []
@@ -682,25 +460,92 @@ func _execute_effects(origin, target, effects_list, carry_data):
 	for effect in effects_list:
 		match effect.action:
 			"damage":
+				#Special case: all_enemies modifier
+				if effect.modifiers.has("target"):
+					if effect.modifiers["target"] == "all_enemies":
+						var damage_effect = BattleEffect.new()
+						damage_effect._init_from_values("damage", int(effect.value), {}, null)
+						_execute_actions(origin, _get_all_enemies(), [damage_effect])
+						continue
+				
+				if not effect.modifiers.has("type"):
+					print("ERR>No type modifier.")
+					continue
+				
 				if target_dead:
 					continue
 				var base_damage = int(effect.value)
 				var modified_damage = base_damage
 				var crit_mod = 1
-				#CRITICAL AND DAMAGE UP/DOWN
-				if carry_data.has("critical"):
-					crit_mod += carry_data["critical"]
-					carry_data.erase("critical")
-				if carry_data.has("phys_atk"):
-					modified_damage += carry_data["phys_atk"]
-				modified_damage *= crit_mod
 				
-				if carry_data.has("dodge"):
-					if carry_data["dodge"] > 0:
-						modified_damage = 0
-						carry_data["dodge"] -= 1
-				if carry_data.has("phys_def"):
-					modified_damage -= carry_data["phys_def"]
+				#On Damage Effect execution
+				var on_damage_effects = []
+				if target.name == "Player":
+					var relic_data = _generate_relic_effects(LanguageHandler.ActivationClass.COMBAT_CONDITON, LanguageHandler.CombatCondition.ON_DAMAGE_EFFECT)
+					on_damage_effects.append_array(relic_data[0])
+				
+				var on_damage_data = _generate_status_effects(origin, LanguageHandler.ActivationClass.COMBAT_CONDITON, LanguageHandler.CombatCondition.ON_DAMAGE_EFFECT)
+				on_damage_effects.append_array(on_damage_data[0])
+				
+				#Activate tickdown effects for statuses
+				for on_status in on_damage_data[1]:
+					var subdata = on_status.status_data
+					if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
+						_tick_down_status(subdata, on_status)
+				
+				var damage_returns = _execute_effects(origin, origin, on_damage_effects, {})
+				var damage_execution_returns = damage_returns[0]
+				var damage_carry_returns = damage_returns[1]
+				
+				#On Take Damage Effect execution
+				var take_damage_effects = []
+				if target.name == "Player":
+					var relic_data = _generate_relic_effects(LanguageHandler.ActivationClass.COMBAT_CONDITON, LanguageHandler.CombatCondition.ON_TAKE_DAMAGE_EFFECT)
+					take_damage_effects.append_array(relic_data[0])
+				
+				var take_damage_data = _generate_status_effects(target, LanguageHandler.ActivationClass.COMBAT_CONDITON, LanguageHandler.CombatCondition.ON_TAKE_DAMAGE_EFFECT)
+				take_damage_effects.append_array(take_damage_data[0])
+				
+				#Activate tickdown effects for statuses
+				for on_status in take_damage_data[1]:
+					var subdata = on_status.status_data
+					if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
+						_tick_down_status(subdata, on_status)
+				
+				var take_damage_returns = _execute_effects(origin, origin, take_damage_effects, {})
+				var take_damage_execution_returns = take_damage_returns[0]
+				var take_damage_carry_returns = take_damage_returns[1]
+				
+				var carry_list = carry_data.duplicate()
+				
+				carry_list.merge(damage_carry_returns)
+				carry_list.merge(take_damage_carry_returns)
+				
+				#TODO: Make crits physical only
+				#CRITICAL AND DAMAGE UP/DOWN
+				if carry_list.has("critical"):
+					crit_mod += carry_list["critical"]
+				
+				#Physical/Magic Split
+				match effect.modifiers["type"]:
+					"phys":
+						if carry_list.has("phys_atk"):
+							modified_damage += carry_list["phys_atk"]
+						modified_damage *= crit_mod
+						if carry_list.has("phys_def"):
+							modified_damage -= carry_list["phys_def"]
+					"mag":
+						if carry_list.has("mag_atk"):
+							modified_damage += carry_list["mag_atk"]
+						modified_damage *= crit_mod
+						if carry_list.has("mag_def"):
+							modified_damage -= carry_list["mag_def"]
+					_:
+						print("ERR> Unrecognized damage type.")
+						continue
+				
+				if carry_list.has("dodge"):
+					modified_damage = 0
 				
 				modified_damage = max(0, modified_damage)
 				var dead = target._take_damage(modified_damage)
@@ -742,67 +587,54 @@ func _execute_effects(origin, target, effects_list, carry_data):
 					var pre_relic_data = _generate_relic_effects(LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.PRE_STATUS_UP)
 					pre_status_effects.append_array(pre_relic_data[0])
 				
+				var sub_target
 				if effect.modifiers.has("target") and effect.modifiers["target"] == "self":
-					var pre_status_data = _generate_status_effects(origin, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.PRE_STATUS_UP)
-					pre_status_effects.append_array(pre_status_data[0])
-					
-					#Activate all pre-status effects
-					var pre_status_returns = _execute_effects(origin, origin, pre_status_effects, {"status" : status_data})
-					var pre_status_execution_returns = pre_status_returns[0]
-					var pre_status_carry_returns = pre_status_returns[1]
-					
-					if pre_status_carry_returns.has("power_through"):
-						var dead = target._take_damage(pre_status_carry_returns["power_through"])
-						if dead:
-							if target.name == "Player":
-								SceneHandler._load_menu()
-								return
-							_remove_enemy(target)
-							target_dead = true
-						continue
-					origin._create_status(status_data, int(effect.value))
-					
-					#Execute all after-status effects
-					var on_status_data = _generate_status_effects(origin, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.ON_STATUS_UP)
-					on_status_effects.append_array(on_status_data[0])
-					
-					#Activate tickdown effects for statuses
-					for on_status in on_status_data[1]:
-						var subdata = on_status.status_data
-						if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
-							_tick_down_status(subdata, on_status)
-					
-					var status_returns = _execute_effects(origin, origin, on_status_effects, {"status" : status_data})
-					var status_execution_returns = status_returns[0]
-					var status_carry_returns = status_returns[1]
-				
+					sub_target = origin
 				else:
-					if target_dead:
-						continue
-					
-					var on_status_data = _generate_status_effects(target, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.ON_STATUS_UP)
-					on_status_effects.append_array(on_status_data[0])
-					
-					var status_returns = _execute_effects(target, target, on_status_effects, {"status" : status_data})
-					var status_execution_returns = status_returns[0]
-					var status_carry_returns = status_returns[1]
-					
-					if status_carry_returns.has("power_through"):
-						var dead = target._take_damage(status_carry_returns["power_through"])
-						if dead:
-							if target.name == "Player":
-								SceneHandler._load_menu()
-								return
-							_remove_enemy(target)
-							target_dead = true
-						continue
-					target._create_status(status_data, int(effect.value))
-					
-					#Activate tickdown effects for statuses
-					for on_status in on_status_data[1]:
-						var subdata = on_status.status_data
-						if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
-							_tick_down_status(subdata, on_status)
+					sub_target = target
+				
+				if target_dead:
+					continue
+				
+				var pre_status_data = _generate_status_effects(sub_target, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.PRE_STATUS_UP)
+				pre_status_effects.append_array(pre_status_data[0])
+				
+				#Activate tickdown effects for statuses
+				for pre_status in pre_status_data[1]:
+					var subdata = pre_status.status_data
+					if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
+						_tick_down_status(subdata, pre_status)
+				
+				#Activate all pre-status effects
+				var pre_status_returns = _execute_effects(sub_target, sub_target, pre_status_effects, {"status" : status_data})
+				var pre_status_execution_returns = pre_status_returns[0]
+				var pre_status_carry_returns = pre_status_returns[1]
+				
+				if pre_status_carry_returns.has("power_through"):
+					var dead = target._take_damage(pre_status_carry_returns["power_through"])
+					if dead:
+						if target.name == "Player":
+							SceneHandler._load_menu()
+							return
+						_remove_enemy(target)
+						target_dead = true
+					continue
+				sub_target._create_status(status_data, int(effect.value))
+				
+				#Execute all after-status effects
+				var on_status_data = _generate_status_effects(sub_target, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.ON_STATUS_UP)
+				on_status_effects.append_array(on_status_data[0])
+				
+				#Activate tickdown effects for statuses
+				for on_status in on_status_data[1]:
+					var subdata = on_status.status_data
+					if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
+						_tick_down_status(subdata, on_status)
+				
+				var status_returns = _execute_effects(sub_target, sub_target, on_status_effects, {"status" : status_data})
+				var status_execution_returns = status_returns[0]
+				var status_carry_returns = status_returns[1]
+				
 			"exhaust_self":
 				if execution_returns.has("exhaust_self"):
 					execution_returns["exhaust_self"] += effect.value
@@ -849,6 +681,30 @@ func _execute_effects(origin, target, effects_list, carry_data):
 					carry_returns["phys_def"] += damage_modifier
 				else:
 					carry_returns["phys_def"] = damage_modifier
+			"mag_atk":
+				var damage_modifier = int(effect.value) * effect.reference.status_counter
+				if not effect.modifiers.has("mod"):
+					print("ERR>No mod modifier.")
+					continue
+				match effect.modifiers["mod"]:
+					"neg":
+						damage_modifier *= -1
+				if carry_returns.has("mag_atk"):
+					carry_returns["mag_atk"] += damage_modifier
+				else:
+					carry_returns["mag_atk"] = damage_modifier
+			"mag_def":
+				var damage_modifier = int(effect.value) * effect.reference.status_counter
+				if not effect.modifiers.has("mod"):
+					print("ERR>No mod modifier.")
+					continue
+				match effect.modifiers["mod"]:
+					"neg":
+						damage_modifier *= -1
+				if carry_returns.has("mag_def"):
+					carry_returns["mag_def"] += damage_modifier
+				else:
+					carry_returns["mag_def"] = damage_modifier
 			"cancel_intent":
 				if target.is_in_group("Player"):
 					print("ERR>Player stun not implemented.")
@@ -858,7 +714,7 @@ func _execute_effects(origin, target, effects_list, carry_data):
 			"power_through":
 				if not carry_data.has("status"):
 					continue
-				if not _validate_triggers(target, null, carry_data["status"]):
+				if not _validate_triggers(effect.reference.status_data, effect.reference, carry_data["status"]):
 					continue
 				
 				#Only best power_through effect applies
@@ -867,6 +723,22 @@ func _execute_effects(origin, target, effects_list, carry_data):
 						carry_returns["power_through"] = int(effect.value)
 				else:
 					carry_returns["power_through"] = int(effect.value)
+			"cleanse":
+				var statuses = target.get_node("Status").get_children()
+				if not effect.modifiers.has("type"):
+					print("ERR>No type modifier.")
+					continue
+				for status in statuses:
+					match effect.modifiers["type"]:
+						"buff":
+							if status.status_data.status_class == Status.StatusType.BUFF:
+								status._decrement_counter(status.status_counter)
+						"debuff":
+							if status.status_data.status_class == Status.StatusType.DEBUFF:
+								status._decrement_counter(status.status_counter)
+						_:
+							print("ERR>Invalid cleanse type.")
+							break
 	return [execution_returns, carry_returns]
 
 func _generate_relic_effects(context_group : LanguageHandler.ActivationClass, context):
@@ -902,7 +774,7 @@ func _generate_relic_effects(context_group : LanguageHandler.ActivationClass, co
 		if relic_effect != null:
 			for sub_effect in relic_effect:
 				var new_effect = BattleEffect.new()
-				new_effect._init_from_typed(relic_effect, relic_item)
+				new_effect._init_from_typed(sub_effect, relic_item)
 				effects.append(new_effect)
 	return [effects, relics]
 
@@ -953,6 +825,8 @@ func _validate_triggers(target, object, context):
 				if not modifiers_dictionary.has("flag"):
 					print("ERR>No flag modifier.")
 					continue
+				if context == null:
+					continue
 				if not (context.status_flags as Array).has(modifiers_dictionary["flag"]):
 					return false
 			"counter":
@@ -984,6 +858,24 @@ func _tick_down_status(status_data : Status, status_object):
 				status_object._queue_decrement_counter(status_object.status_counter)
 			Status.TickDownAmount.NONE:
 				status_object._queue_decrement_counter(0)
+
+func _activate_external_effects(target, activation_context : LanguageHandler.ActivationClass, context):
+	#Generate all relevant effects
+	var all_effects = []
+	if target.name == "Player":
+		var relic_data = _generate_relic_effects(activation_context, context)
+		all_effects.append_array(relic_data[0])
+	var status_data = _generate_status_effects(target, activation_context, context)
+	all_effects.append_array(status_data[0])
+	
+	#Activate tickdown effects for statuses
+	for on_status in status_data[1]:
+		var subdata = on_status.status_data
+		if subdata.status_tick_down == Status.TickDown.WHEN_ACTIVATED:
+			_tick_down_status(subdata, on_status)
+	
+	return _execute_effects(target, target, all_effects, {})
+
 
 func _modifier_dictionary_from_string(modifier_string : String):
 	var modifiers_array = modifier_string.split(",")

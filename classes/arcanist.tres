@@ -10,3 +10,4 @@ class_name_var = "Arcanist"
 class_description = "The Arcanist is a powerful mystic class that excels in dealing damage and drawing more spells."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_fp0xu"), ExtResource("2_buswv")])
 class_pool_cards = Array[Resource("res://scripts/card.gd")]([])
+class_starting_hp = 25
