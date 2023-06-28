@@ -1,0 +1,206 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy8erxpx2r75o"]
+
+[ext_resource type="Script" path="res://scripts/village_menu.gd" id="1_yvlwl"]
+
+[node name="VillageMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yvlwl")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="DescriptionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1600.0
+offset_bottom = 440.0
+mouse_filter = 1
+
+[node name="VillageName" type="RichTextLabel" parent="DescriptionPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1536.0
+offset_bottom = 122.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 64
+text = "Village Name"
+
+[node name="VillageDescription" type="RichTextLabel" parent="DescriptionPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 138.0
+offset_right = 1536.0
+offset_bottom = 376.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 28
+text = "Village Description"
+
+[node name="ActionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 472.0
+offset_right = 1888.0
+offset_bottom = 1040.0
+mouse_filter = 1
+
+[node name="RestPanel" type="Panel" parent="ActionPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 456.0
+offset_bottom = 536.0
+mouse_filter = 1
+
+[node name="ActionIcon" type="ColorRect" parent="ActionPanel/RestPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 392.0
+offset_bottom = 392.0
+mouse_filter = 1
+
+[node name="ActionButton" type="Button" parent="ActionPanel/RestPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 424.0
+offset_right = 392.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 28
+text = "Rest"
+
+[node name="StudyPanel" type="Panel" parent="ActionPanel"]
+offset_left = 488.0
+offset_top = 32.0
+offset_right = 912.0
+offset_bottom = 536.0
+mouse_filter = 1
+
+[node name="ActionIcon" type="ColorRect" parent="ActionPanel/StudyPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 392.0
+offset_bottom = 392.0
+mouse_filter = 1
+
+[node name="ActionButton" type="Button" parent="ActionPanel/StudyPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 424.0
+offset_right = 392.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 28
+text = "Study"
+
+[node name="StrategizePanel" type="Panel" parent="ActionPanel"]
+offset_left = 944.0
+offset_top = 32.0
+offset_right = 1368.0
+offset_bottom = 536.0
+mouse_filter = 1
+
+[node name="ActionIcon" type="ColorRect" parent="ActionPanel/StrategizePanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 392.0
+offset_bottom = 392.0
+mouse_filter = 1
+
+[node name="ActionButton" type="Button" parent="ActionPanel/StrategizePanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 424.0
+offset_right = 392.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 28
+text = "Strategize"
+
+[node name="UpgradePanel" type="Panel" parent="ActionPanel"]
+offset_left = 1400.0
+offset_top = 32.0
+offset_right = 1824.0
+offset_bottom = 536.0
+mouse_filter = 1
+
+[node name="ActionIcon" type="ColorRect" parent="ActionPanel/UpgradePanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 392.0
+offset_bottom = 392.0
+mouse_filter = 1
+
+[node name="ActionButton" type="Button" parent="ActionPanel/UpgradePanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 424.0
+offset_right = 392.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 28
+disabled = true
+text = "Upgrade (Disabled)"
+
+[node name="RestPointPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1632.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 276.0
+mouse_filter = 1
+
+[node name="RestPointLabel" type="RichTextLabel" parent="RestPointPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 240.0
+offset_bottom = 80.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 36
+text = "Rest Points"
+
+[node name="RestPointCounter" type="RichTextLabel" parent="RestPointPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 240.0
+offset_bottom = 228.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 96
+text = "X/X"
+
+[node name="DepartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1632.0
+offset_top = 294.0
+offset_right = 1888.0
+offset_bottom = 358.0
+theme_override_font_sizes/font_size = 32
+text = "Depart"
+
+[node name="DeckButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1632.0
+offset_top = 376.0
+offset_right = 1888.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 32
+text = "View Deck"
+
+[connection signal="pressed" from="ActionPanel/RestPanel/ActionButton" to="." method="_rest_action"]
+[connection signal="pressed" from="ActionPanel/StudyPanel/ActionButton" to="." method="_study_action"]
+[connection signal="pressed" from="ActionPanel/StrategizePanel/ActionButton" to="." method="_strategize_action"]
+[connection signal="pressed" from="ActionPanel/UpgradePanel/ActionButton" to="." method="_upgrade_action"]
+[connection signal="pressed" from="DepartButton" to="." method="_on_exit_to_run"]
+[connection signal="pressed" from="DeckButton" to="." method="_on_view_deck_button_pressed"]

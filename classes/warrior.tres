@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterClass" load_steps=14 format=3 uid="uid://tx2etejeq04i"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=15 format=3 uid="uid://tx2etejeq04i"]
 
 [ext_resource type="Script" path="res://scripts/character_class.gd" id="1_1ojdw"]
 [ext_resource type="Resource" uid="uid://du0q71xaa5gy6" path="res://cards/warrior_cards/heavy_slam.tres" id="1_iwffn"]
@@ -13,11 +13,14 @@
 [ext_resource type="Resource" uid="uid://cql0csjxhk6qm" path="res://cards/warrior_cards/stalwart.tres" id="8_wao24"]
 [ext_resource type="Resource" uid="uid://bnihxwp076bfh" path="res://cards/warrior_cards/superpower.tres" id="9_yu7la"]
 [ext_resource type="Resource" uid="uid://ci246te8r3q76" path="res://cards/warrior_cards/stunning_strike.tres" id="10_s7f0k"]
+[ext_resource type="Texture2D" uid="uid://bj8rvmggrdw5j" path="res://sprites/unit_sprites/UnitWarrior.png" id="13_0yaqu"]
 
 [resource]
+resource_name = "warrior"
 script = ExtResource("1_1ojdw")
 class_name_var = "Warrior"
 class_description = "The Warrior is a consistent martial class with solid offense and defense."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_qbbwr"), ExtResource("2_yl8jk")])
 class_pool_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_iwffn"), ExtResource("2_dhg07"), ExtResource("3_knlir"), ExtResource("4_amlc3"), ExtResource("5_jh6ov"), ExtResource("6_e1rqb"), ExtResource("7_3igsb"), ExtResource("8_wao24"), ExtResource("9_yu7la"), ExtResource("10_s7f0k")])
 class_starting_hp = 50
+class_texture = ExtResource("13_0yaqu")

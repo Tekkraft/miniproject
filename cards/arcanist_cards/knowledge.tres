@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b6ggig6ugwjq"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_5t54d"]
-[ext_resource type="Texture2D" uid="uid://b47bk6op625de" path="res://sprites/CardArtTest.png" id="1_wwcvw"]
+[ext_resource type="Texture2D" uid="uid://bvmyk6cvt2kca" path="res://sprites/card_art/arcanist/CardArtKnowledge.png" id="1_koeno"]
 
 [resource]
 script = ExtResource("1_5t54d")
 card_name = "Knowledge"
 card_cost = 1
-card_sprite = ExtResource("1_wwcvw")
+card_sprite = ExtResource("1_koeno")
 card_description = "Draw 1 card."
 card_effects = PackedStringArray("draw-1")
 card_targeting_type = 1

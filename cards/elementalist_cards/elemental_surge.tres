@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://nefbk21n2fxd"]
+
+[ext_resource type="Texture2D" uid="uid://dhpsn33sysvmd" path="res://sprites/card_art/elementalist/CardArtElementalSurge.png" id="1_2ktld"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_236su"]
+
+[resource]
+script = ExtResource("2_236su")
+card_name = "Elemental Surge"
+card_cost = 3
+card_sprite = ExtResource("1_2ktld")
+card_description = "Deal 10 damage.
+Inflict 2 Shock and 2 Chill."
+card_effects = PackedStringArray("damage-12+type:mag", "status-1+id:shock", "status-1+id:chill")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 1
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

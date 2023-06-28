@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VillageEncounter" load_steps=2 format=3 uid="uid://dmc7cagnquyng"]
+
+[ext_resource type="Script" path="res://scripts/village_encounter.gd" id="1_y0jme"]
+
+[resource]
+script = ExtResource("1_y0jme")
+village_name = "testvillage"
+village_description = "A small village."
+available_rest_points = 2
+random_village_name = true
+encounter_type = 4

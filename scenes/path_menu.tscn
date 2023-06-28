@@ -78,6 +78,33 @@ offset_right = 1872.0
 offset_bottom = 592.0
 text = "Location 3"
 
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 640.0
+offset_right = 960.0
+offset_bottom = 1064.0
+
+[node name="DistanceLabel" type="RichTextLabel" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 80.0
+theme_override_font_sizes/normal_font_size = 36
+text = "Distance To Boss:"
+
+[node name="DistanceMeter" type="ProgressBar" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 928.0
+offset_bottom = 120.0
+max_value = 10.0
+step = 1.0
+rounded = true
+show_percentage = false
+
 [connection signal="pressed" from="RoutePanel/Location0Button" to="." method="_on_location_selected" binds= [0]]
 [connection signal="pressed" from="RoutePanel/Location1Button" to="." method="_on_location_selected" binds= [1]]
 [connection signal="pressed" from="RoutePanel/Location2Button" to="." method="_on_location_selected" binds= [2]]

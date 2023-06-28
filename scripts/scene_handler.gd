@@ -5,11 +5,11 @@ var battle_map = preload("res://scenes/battle_map.tscn")
 var battle_handler = preload("res://scenes/battle_handler.tscn")
 var path_handler = preload("res://scenes/path_menu.tscn")
 var after_battle_handler = preload("res://scenes/after_battle_menu.tscn")
-
 var main_menu = preload("res://scenes/run_start_menu.tscn")
-
-var unit = preload("res://scenes/unit.tscn")
-var card = preload("res://scenes/card.tscn")
+var event_menu = preload("res://scenes/event_menu.tscn")
+var chest_menu = preload("res://scenes/chest_menu.tscn")
+var village_menu = preload("res://scenes/village_menu.tscn")
+var end_screen = preload("res://scenes/end_screen.tscn")
 
 var map_position = Vector2(850, 372)
 
@@ -21,6 +21,64 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _load_end(successful : bool):
+	call_deferred("_load_end_deferred", successful)
+
+func _load_end_deferred(successful : bool):
+	var root_node = get_tree().root
+	
+	var end = end_screen.instantiate() as Control
+
+	_clear_root()
+	
+	root_node.add_child(end)
+	get_tree().set_current_scene(end)
+	end._setup(successful)
+
+func _load_village(village_data : VillageEncounter):
+	call_deferred("_load_village_deferred", village_data)
+
+func _load_village_deferred(village_data : VillageEncounter):
+	var root_node = get_tree().root
+	
+	var village = village_menu.instantiate() as Control
+
+	_clear_root()
+	
+	root_node.add_child(village)
+	get_tree().set_current_scene(village)
+	village._setup(village_data)
+
+func _load_chest(chest_data : ChestEncounter):
+	call_deferred("_load_chest_deferred", chest_data)
+
+func _load_chest_deferred(chest_data : ChestEncounter):
+	var root_node = get_tree().root
+	
+	var chest = chest_menu.instantiate() as Control
+
+	_clear_root()
+	
+	var new_relic = RunHandler._get_random_relic()
+	
+	root_node.add_child(chest)
+	get_tree().set_current_scene(chest)
+	chest._setup(new_relic)
+
+func _load_event(event_data : EventEncounter):
+	call_deferred("_load_event_deferred", event_data)
+
+func _load_event_deferred(event_data : EventEncounter):
+	var root_node = get_tree().root
+	
+	var event = event_menu.instantiate() as Control
+
+	_clear_root()
+	
+	root_node.add_child(event)
+	get_tree().set_current_scene(event)
+	event._setup(event_data)
 
 func _load_menu():
 	call_deferred("_load_menu_deferred")
@@ -49,13 +107,14 @@ func _load_after_battle_deferred():
 	get_tree().set_current_scene(post_battle)
 	
 	post_battle._setup()
-	RunHandler._advance_encounters()
 
 func _load_run():
 	call_deferred("_load_run_deferred")
 
 func _load_run_deferred():
 	var root_node = get_tree().root
+	
+	RunHandler._advance_encounters()
 	
 	var path = path_handler.instantiate() as Control
 	var encounter_list = RunHandler._get_encounter_list()

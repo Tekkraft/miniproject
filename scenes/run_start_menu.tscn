@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://mbistwdtjj6l"]
+[gd_scene load_steps=5 format=3 uid="uid://mbistwdtjj6l"]
 
 [ext_resource type="Script" path="res://scripts/run_start_menu.gd" id="1_jacdw"]
-[ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="1_vkvk0"]
+[ext_resource type="Texture2D" uid="uid://c3vel0ah4rati" path="res://sprites/unit_sprites/UnitBase.png" id="2_fv51x"]
+[ext_resource type="Texture2D" uid="uid://bj8rvmggrdw5j" path="res://sprites/unit_sprites/UnitWarrior.png" id="3_q0uyy"]
+[ext_resource type="Texture2D" uid="uid://cw3yj4oppwqho" path="res://sprites/unit_sprites/UnitElementalist.png" id="4_f1xuw"]
 
 [node name="RunStartMenu" type="Control"]
 layout_mode = 3
@@ -73,19 +75,37 @@ offset_bottom = 152.0
 text = "(MYSTIC CLASS DESCRIPTION)"
 
 [node name="SpritePanel" type="Panel" parent="CharacterInfoPanel"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 192.0
 offset_top = 168.0
 offset_right = 752.0
 offset_bottom = 728.0
 
-[node name="TextureRect" type="TextureRect" parent="CharacterInfoPanel/SpritePanel"]
+[node name="UnitBase" type="TextureRect" parent="CharacterInfoPanel/SpritePanel"]
+z_index = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 552.0
-offset_bottom = 552.0
-texture = ExtResource("1_vkvk0")
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 536.0
+offset_bottom = 536.0
+texture = ExtResource("2_fv51x")
+
+[node name="MartialSprite" type="TextureRect" parent="CharacterInfoPanel/SpritePanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 536.0
+offset_bottom = 536.0
+texture = ExtResource("3_q0uyy")
+
+[node name="MysticSprite" type="TextureRect" parent="CharacterInfoPanel/SpritePanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 536.0
+offset_bottom = 536.0
+texture = ExtResource("4_f1xuw")
 
 [node name="MartialClassSelect" type="ItemList" parent="."]
 layout_mode = 0

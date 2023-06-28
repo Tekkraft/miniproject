@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://myrdk4srrybr"]
+
+[ext_resource type="Texture2D" uid="uid://cbi45c5jj5bt0" path="res://sprites/card_art/elementalist/CardArtIceShock.png" id="1_1e2lr"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_uhubk"]
+
+[resource]
+script = ExtResource("2_uhubk")
+card_name = "Ice Shock"
+card_cost = 2
+card_sprite = ExtResource("1_1e2lr")
+card_description = "Deal 12 damage.
+Inflict 1 Shock and 1 Chill."
+card_effects = PackedStringArray("damage-12+type:mag", "status-1+id:shock", "status-1+id:chill")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

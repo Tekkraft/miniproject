@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbbylfo8jeuh7"]
+
+[ext_resource type="Script" path="res://scripts/event_menu.gd" id="1_cmcug"]
+
+[node name="EventMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cmcug")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="DescriptionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1600.0
+offset_bottom = 744.0
+mouse_filter = 2
+
+[node name="EventTitle" type="RichTextLabel" parent="DescriptionPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1552.0
+offset_bottom = 112.0
+theme_override_font_sizes/normal_font_size = 64
+text = "EVENT TITLE"
+
+[node name="EventDescription" type="RichTextLabel" parent="DescriptionPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 108.0
+offset_right = 1552.0
+offset_bottom = 696.0
+theme_override_font_sizes/normal_font_size = 36
+text = "Event Description"
+
+[node name="DeckButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1632.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 80.0
+text = "View Deck"
+
+[node name="DecisionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 776.0
+offset_right = 1600.0
+offset_bottom = 1048.0
+mouse_filter = 2
+
+[connection signal="pressed" from="DeckButton" to="." method="_display_card_deck"]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://tay3swnwu1ag"]
+
+[ext_resource type="Texture2D" uid="uid://b1t85ap70qgt" path="res://sprites/card_art/elementalist/CardArtFlameBreath.png" id="1_pw3io"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_kmdvr"]
+
+[resource]
+script = ExtResource("2_kmdvr")
+card_name = "Flame Breath"
+card_cost = 1
+card_sprite = ExtResource("1_pw3io")
+card_description = "Deal 10 damage."
+card_effects = PackedStringArray("damage-10+type:mag")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 2
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

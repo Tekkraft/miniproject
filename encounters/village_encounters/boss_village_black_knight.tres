@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VillageEncounter" load_steps=2 format=3 uid="uid://c036wlech40xb"]
+
+[ext_resource type="Script" path="res://scripts/village_encounter.gd" id="1_yveel"]
+
+[resource]
+script = ExtResource("1_yveel")
+village_name = "Blackhearth"
+village_description = "This quiet village marks the edge of the Black Knight's domain. Prepare yourself, then challenge this shadowy figure."
+available_rest_points = 3
+random_village_name = false
+encounter_type = 4

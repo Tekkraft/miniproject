@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://7tfsvrqlfh5b"]
+
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_pahgs"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pahgs")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="TitlePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 192.0
+
+[node name="EndingTitle" type="RichTextLabel" parent="TitlePanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1840.0
+offset_bottom = 144.0
+theme_override_font_sizes/normal_font_size = 80
+text = "ENDING TITLE"
+
+[node name="RelicArea" type="Node2D" parent="."]
+position = Vector2(144, 336)
+
+[node name="DeckButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 880.0
+offset_right = 224.0
+offset_bottom = 928.0
+text = "View Deck"
+
+[node name="LoopButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 945.0
+offset_right = 224.0
+offset_bottom = 993.0
+disabled = true
+text = "Loop Run"
+
+[node name="MenuButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 1008.0
+offset_right = 224.0
+offset_bottom = 1056.0
+text = "Return to Menu"
+
+[connection signal="pressed" from="DeckButton" to="." method="_on_deck_button_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

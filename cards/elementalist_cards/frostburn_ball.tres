@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://iefedx2u6iu6"]
+
+[ext_resource type="Texture2D" uid="uid://4rdnmiatwauq" path="res://sprites/card_art/elementalist/CardArtFrostburnBall.png" id="1_ensdo"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_o6pbg"]
+
+[resource]
+script = ExtResource("2_o6pbg")
+card_name = "Frostburn Ball"
+card_cost = 2
+card_sprite = ExtResource("1_ensdo")
+card_description = "Deal 8 damage.
+Inflict 2 Chill if the target has Chill."
+card_effects = PackedStringArray("damage-8+type:mag", "status-2+id:chill,has_status:chill")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 1
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

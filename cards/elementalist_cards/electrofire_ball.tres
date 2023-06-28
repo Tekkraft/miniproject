@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dwgjunlxjin34"]
+
+[ext_resource type="Texture2D" uid="uid://bkhmc6mwe50xl" path="res://sprites/card_art/elementalist/CardArtElectrofireBall.png" id="1_8jlio"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_y04bn"]
+
+[resource]
+script = ExtResource("2_y04bn")
+card_name = "Electrofire Ball"
+card_cost = 2
+card_sprite = ExtResource("1_8jlio")
+card_description = "Deal 8 damage.
+Inflict 2 Shock if the target has Shock."
+card_effects = PackedStringArray("damage-8+type:mag", "status-2+id:shock,has_status:shock")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 1
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

@@ -13,6 +13,8 @@ func _ready():
 	get_node("CharacterInfoPanel/MartialClassDescription").text = ""
 	get_node("CharacterInfoPanel/MysticClassName").text = "Please select a Mystic Class"
 	get_node("CharacterInfoPanel/MysticClassDescription").text = ""
+	get_node("CharacterInfoPanel/SpritePanel/MartialSprite").texture = null
+	get_node("CharacterInfoPanel/SpritePanel/MysticSprite").texture = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,11 +24,13 @@ func _on_martial_class_selected(index):
 	selected_martial = DataHandler.martial_class_list[index]
 	get_node("CharacterInfoPanel/MartialClassName").text = selected_martial.class_name_var
 	get_node("CharacterInfoPanel/MartialClassDescription").text = selected_martial.class_description
+	get_node("CharacterInfoPanel/SpritePanel/MartialSprite").texture = selected_martial.class_texture
 
 func _on_mystic_class_selected(index):
 	selected_mystic = DataHandler.mystic_class_list[index]
 	get_node("CharacterInfoPanel/MysticClassName").text = selected_mystic.class_name_var
 	get_node("CharacterInfoPanel/MysticClassDescription").text = selected_mystic.class_description
+	get_node("CharacterInfoPanel/SpritePanel/MysticSprite").texture = selected_mystic.class_texture
 
 func _on_depart_button_pressed():
 	if selected_martial == null or selected_mystic == null:
@@ -50,4 +54,5 @@ func _on_depart_button_pressed():
 	RunHandler.mystic_class = selected_mystic
 	RunHandler._setup_encounters()
 	RunHandler._setup_relics()
+	RunHandler.current_relics = []
 	SceneHandler._load_run()

@@ -9,13 +9,13 @@
 script = ExtResource("1_jyaqv")
 action_name = "Bite"
 action_type = 0
-action_effects = PackedStringArray("damage-2")
+action_effects = PackedStringArray("damage-2+type:phys")
 
 [sub_resource type="Resource" id="Resource_qa5r0"]
 script = ExtResource("1_jyaqv")
 action_name = "Bite"
 action_type = 0
-action_effects = PackedStringArray("damage-2")
+action_effects = PackedStringArray("damage-2+type:phys")
 
 [sub_resource type="Resource" id="Resource_0r4t3"]
 script = ExtResource("2_bvf55")

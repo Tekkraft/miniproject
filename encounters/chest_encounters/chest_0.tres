@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChestEncounter" load_steps=2 format=3 uid="uid://5v8wlywyhdih"]
+
+[ext_resource type="Script" path="res://scripts/chest_encounter.gd" id="1_iqtp4"]
+
+[resource]
+script = ExtResource("1_iqtp4")
+chest_pool = "standard"
+encounter_type = 2

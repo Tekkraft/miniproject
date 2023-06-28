@@ -10,7 +10,7 @@ card_cost = 2
 card_sprite = ExtResource("1_wpwrf")
 card_description = "Deal 7 damage.
 Inflict 1 Stun."
-card_effects = PackedStringArray("damage-7", "status-1+id:stun")
+card_effects = PackedStringArray("damage-7+type:phys", "status-1+id:stun")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0

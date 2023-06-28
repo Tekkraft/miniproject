@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://deem7uerpd0j4"]
+
+[ext_resource type="Texture2D" uid="uid://texxs8dbadc4" path="res://sprites/card_art/elementalist/CardArtOverheat.png" id="1_2srju"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_pv6tc"]
+
+[resource]
+script = ExtResource("2_pv6tc")
+card_name = "Overheat"
+card_cost = 3
+card_sprite = ExtResource("1_2srju")
+card_description = "Deal 30 damage.
+Exile 1 random card from your hand."
+card_effects = PackedStringArray("damage-30+type:mag", "exile-1+mode:random_hand")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 4
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

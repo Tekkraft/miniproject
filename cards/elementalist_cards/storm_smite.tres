@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://d3fn5rspror64"]
+
+[ext_resource type="Texture2D" uid="uid://bknpd6k6vnw8d" path="res://sprites/card_art/elementalist/CardArtThunderSmite.png" id="1_axgp5"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_2xr8m"]
+
+[resource]
+script = ExtResource("2_2xr8m")
+card_name = "Storm Smite"
+card_cost = 3
+card_sprite = ExtResource("1_axgp5")
+card_description = "Deal 20 damage.
+Inflict 1 Shock and 1 Stun."
+card_effects = PackedStringArray("damage-12+type:mag", "status-1+id:shock", "status-1+id:stun")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

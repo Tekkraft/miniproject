@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ceabel068wi8u"]
+
+[ext_resource type="Texture2D" uid="uid://bxnrr7u6kj68p" path="res://sprites/card_art/elementalist/CardArtTwinBolt2nd.png" id="1_vmxup"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_uhm58"]
+
+[resource]
+script = ExtResource("2_uhm58")
+card_name = "Spark Bolt"
+card_cost = 0
+card_sprite = ExtResource("1_vmxup")
+card_description = "Deal 4 damage.
+Inflict 1 Shock.
+Exhaust."
+card_effects = PackedStringArray("damage-4+type:mag", "status-1+id:shock", "exhaust_self-1")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

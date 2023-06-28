@@ -1,13 +1,27 @@
-[gd_resource type="Resource" script_class="CharacterClass" load_steps=4 format=3 uid="uid://byarwx644eonw"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=16 format=3 uid="uid://byarwx644eonw"]
 
 [ext_resource type="Script" path="res://scripts/character_class.gd" id="1_4ajg1"]
 [ext_resource type="Resource" uid="uid://wj5f1y7jg7ai" path="res://cards/elementalist_cards/fireblast.tres" id="1_a2y7c"]
+[ext_resource type="Resource" uid="uid://jp1il3a38f3n" path="res://cards/elementalist_cards/frostbolt.tres" id="1_xe8tb"]
+[ext_resource type="Resource" uid="uid://tay3swnwu1ag" path="res://cards/elementalist_cards/flame_breath.tres" id="2_3h72u"]
 [ext_resource type="Resource" uid="uid://cd5vk6upcoq8k" path="res://cards/elementalist_cards/thunderburst.tres" id="2_lp28t"]
+[ext_resource type="Resource" uid="uid://b4fvwlq8y2mhj" path="res://cards/elementalist_cards/twin_bolt.tres" id="3_326yf"]
+[ext_resource type="Resource" uid="uid://b27tm1mw721kl" path="res://cards/elementalist_cards/cold_shatter.tres" id="4_dodrt"]
+[ext_resource type="Resource" uid="uid://iefedx2u6iu6" path="res://cards/elementalist_cards/frostburn_ball.tres" id="5_4iaql"]
+[ext_resource type="Resource" uid="uid://dwgjunlxjin34" path="res://cards/elementalist_cards/electrofire_ball.tres" id="6_4k3mg"]
+[ext_resource type="Resource" uid="uid://myrdk4srrybr" path="res://cards/elementalist_cards/ice_shock.tres" id="7_t73l3"]
+[ext_resource type="Resource" uid="uid://deem7uerpd0j4" path="res://cards/elementalist_cards/overheat.tres" id="8_nb7hm"]
+[ext_resource type="Resource" uid="uid://d3fn5rspror64" path="res://cards/elementalist_cards/storm_smite.tres" id="9_qqngu"]
+[ext_resource type="Resource" uid="uid://befj8myh8iti3" path="res://cards/elementalist_cards/glaciate.tres" id="10_w3eq2"]
+[ext_resource type="Resource" uid="uid://nefbk21n2fxd" path="res://cards/elementalist_cards/elemental_surge.tres" id="11_p68sk"]
+[ext_resource type="Texture2D" uid="uid://cw3yj4oppwqho" path="res://sprites/unit_sprites/UnitElementalist.png" id="14_uirfc"]
 
 [resource]
+resource_name = "elementalist"
 script = ExtResource("1_4ajg1")
 class_name_var = "Elementalist"
 class_description = "The Elementalist is a mystic class with good access to powerful AOE spells and statuses."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_a2y7c"), ExtResource("2_lp28t")])
-class_pool_cards = Array[Resource("res://scripts/card.gd")]([])
+class_pool_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_xe8tb"), ExtResource("2_3h72u"), ExtResource("3_326yf"), ExtResource("4_dodrt"), ExtResource("5_4iaql"), ExtResource("6_4k3mg"), ExtResource("7_t73l3"), ExtResource("8_nb7hm"), ExtResource("9_qqngu"), ExtResource("10_w3eq2"), ExtResource("11_p68sk")])
 class_starting_hp = 40
+class_texture = ExtResource("14_uirfc")

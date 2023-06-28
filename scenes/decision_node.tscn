@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cwoit5eobdk5v"]
+
+[node name="DecisionNode" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 48.0
+mouse_filter = 2
+
+[node name="DecisionButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "Option X"

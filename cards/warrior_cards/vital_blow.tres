@@ -10,8 +10,10 @@ card_cost = 2
 card_sprite = ExtResource("1_cx80n")
 card_description = "Gain 1 Critical.
 Deal 12 damage."
-card_effects = PackedStringArray("status-1+id:critical,target:self", "damage-12")
+card_effects = PackedStringArray("status-1+id:critical,target:self", "damage-12+type:phys")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0
 card_targeting_modifier = ""
+card_skill_type = 0
+card_action_type = 0

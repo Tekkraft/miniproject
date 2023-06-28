@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://78vwmv083513"]
+
+[ext_resource type="Texture2D" uid="uid://ddvv6ud3b267m" path="res://sprites/relics/RelicIconsRecklessCourage.png" id="1_lqabd"]
+[ext_resource type="Script" path="res://scripts/relic.gd" id="2_3ygve"]
+
+[resource]
+script = ExtResource("2_3ygve")
+relic_name = "Reckless Courage"
+relic_icon = ExtResource("1_lqabd")
+relic_activation_class = 0
+relic_turn_condition = 1
+relic_status_condition = 0
+relic_combat_condition = 0
+relic_card_condition = 0
+relic_encounter_condition = 0
+relic_triggers = PackedStringArray()
+relic_effects = PackedStringArray("status-1+id:strength", "status-1+id:clarity", "status-1+id:sunder", "status-1+id:flux")
+relic_description = "At the start of each turn, gain 1 Strength, 1 Clarity, 1 Sunder, and 1 Flux."

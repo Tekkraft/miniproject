@@ -10,7 +10,7 @@ card_cost = 3
 card_sprite = ExtResource("1_v7v6s")
 card_description = "Deal 30 damage.
 Inflict 1 Weakness and 1 Sunder to yourself."
-card_effects = PackedStringArray("damage-30", "status-1+id:weakness,target:self", "status-1+id:sunder,target:self")
+card_effects = PackedStringArray("damage-30+type:phys", "status-1+id:weakness,target:self", "status-1+id:sunder,target:self")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0

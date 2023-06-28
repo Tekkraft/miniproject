@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://befj8myh8iti3"]
+
+[ext_resource type="Texture2D" uid="uid://cxnlkwirygstw" path="res://sprites/card_art/elementalist/CardArtGlaciate.png" id="1_66oki"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_k8kh8"]
+
+[resource]
+script = ExtResource("2_k8kh8")
+card_name = "Glaciate"
+card_cost = 3
+card_sprite = ExtResource("1_66oki")
+card_description = "Deal 10 damage.
+Inflict 2 Chill.
+Deal 10 more damage if the target is Frozen."
+card_effects = PackedStringArray("damage-10+type:mag", "status-2+id:chill", "damage-10+type:mag,has_status:frozen")
+card_targeting_type = 0
+card_targeting = 2
+card_aoe = 4
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

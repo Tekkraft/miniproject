@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkyaw85dndtdg"]
+
+[ext_resource type="Script" path="res://scripts/chest_menu.gd" id="1_3cmpa"]
+
+[node name="ChestMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3cmpa")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="ChestTitle" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 128.0
+theme_override_font_sizes/normal_font_size = 64
+text = "Relic Obtained!"
+
+[node name="RelicArea" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 984.0
+offset_right = 1120.0
+offset_bottom = 1048.0
+theme_override_font_sizes/font_size = 36
+text = "Continue"
+
+[connection signal="pressed" from="ExitButton" to="." method="_exit_menu"]

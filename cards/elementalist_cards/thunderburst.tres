@@ -8,9 +8,9 @@ script = ExtResource("2_xuk2a")
 card_name = "Thunderburst"
 card_cost = 1
 card_sprite = ExtResource("1_l3nqf")
-card_description = "Deal 6 damage.
+card_description = "Deal 8 damage.
 Inflict 2 Shock."
-card_effects = PackedStringArray("damage-6", "status-2+id:shock")
+card_effects = PackedStringArray("damage-8+type:mag", "status-2+id:shock")
 card_targeting_type = 0
 card_targeting = 1
 card_aoe = 0

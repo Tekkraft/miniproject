@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b27tm1mw721kl"]
+
+[ext_resource type="Texture2D" uid="uid://dqndcr7gahuqk" path="res://sprites/card_art/elementalist/CardArtColdShatter.png" id="1_2q0dy"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_p7a0v"]
+
+[resource]
+script = ExtResource("2_p7a0v")
+card_name = "Cold Shatter"
+card_cost = 1
+card_sprite = ExtResource("1_2q0dy")
+card_description = "Deal 10 damage.
+If the target is Frozen, deal 10 more."
+card_effects = PackedStringArray("damage-10+type:mag", "damage-10+type:mag,has_status:frozen")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

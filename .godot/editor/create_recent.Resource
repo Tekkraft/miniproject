@@ -1,8 +1,11 @@
+Card
+VillageEncounter
+EventEncounter
+ChestEncounter
 Relic
 CombatEncounter
 Status
 Unit
-Card
 Action
 CharacterClass
 Encounter

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b4fvwlq8y2mhj"]
+
+[ext_resource type="Texture2D" uid="uid://c2a5n16t4ks22" path="res://sprites/card_art/elementalist/CardArtTwinBolt.png" id="1_tfoep"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="2_etr00"]
+
+[resource]
+script = ExtResource("2_etr00")
+card_name = "Twin Bolt"
+card_cost = 1
+card_sprite = ExtResource("1_tfoep")
+card_description = "Deal 6 damage.
+Inflict 1 Shock.
+Add 1 Spark Bolt to your hand."
+card_effects = PackedStringArray("damage-6+type:mag", "status-1+id:shock", "new_card-1+id:spark_bolt,class:elementalist,location:hand")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

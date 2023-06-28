@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://jp1il3a38f3n"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_13mq1"]
+[ext_resource type="Texture2D" uid="uid://c2xjdmgqcytoc" path="res://sprites/card_art/elementalist/CardArtFrostbolt.png" id="1_e5ux1"]
+
+[resource]
+script = ExtResource("1_13mq1")
+card_name = "Frostbolt"
+card_cost = 1
+card_sprite = ExtResource("1_e5ux1")
+card_description = "Deal 6 damage.
+Inflict 1 Chill."
+card_effects = PackedStringArray("damage-6+type:mag", "status-1+id:chill")
+card_targeting_type = 0
+card_targeting = 1
+card_aoe = 0
+card_targeting_modifier = ""
+card_skill_type = 1
+card_action_type = 0

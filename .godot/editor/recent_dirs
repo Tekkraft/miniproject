@@ -1,6 +1,11 @@
+res://cards/elementalist_cards
+res://scenes
+res://encounters/village_encounters
+res://encounters/event_encounters/
+res://encounters/village_encounters/
+res://encounters/chest_encounters/
 res://cards/warrior_cards
 res://relics/
-res://scenes
 res://encounters/boss_encounters/
 res://statuses/special/
 res://enemies/class_bosses/
@@ -15,8 +20,3 @@ res://enemies/class_animals/
 res://encounters/combat_encounters/
 res://scenes/
 res://scripts
-res://enemies/basic_actions
-res://cards/arcanist_cards/
-res://cards/duelist_cards/
-res://classes
-res://classes/

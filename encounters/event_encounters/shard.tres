@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventEncounter" load_steps=5 format=3 uid="uid://dw46tobc10n2u"]
+
+[ext_resource type="Script" path="res://scripts/event_option.gd" id="1_a2g24"]
+[ext_resource type="Script" path="res://scripts/event_encounter.gd" id="2_6vio3"]
+
+[sub_resource type="Resource" id="Resource_7qg8c"]
+script = ExtResource("1_a2g24")
+option_name = "Take"
+option_description = "Gain a special relic."
+option_conditions = PackedStringArray("has_relic-0+id:reckless_courage,mod:false")
+option_effects = PackedStringArray("new_relic-1+id:reckless_courage")
+
+[sub_resource type="Resource" id="Resource_f5oyo"]
+script = ExtResource("1_a2g24")
+option_name = "Leave"
+option_description = ""
+option_conditions = PackedStringArray()
+option_effects = PackedStringArray()
+
+[resource]
+script = ExtResource("2_6vio3")
+event_name = "Shard of Courage"
+event_content = "As you travel, you come across a strange crimson shard lying on the ground. You feel it beckon with a strange power..."
+event_options = Array[ExtResource("1_a2g24")]([SubResource("Resource_7qg8c"), SubResource("Resource_f5oyo")])
+encounter_type = 5

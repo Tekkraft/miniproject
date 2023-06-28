@@ -36,11 +36,14 @@ func _add_card(card_data):
 	new_card.position.x = (row_index * card_size.x * card_scale) + (row_index * spacing) + padding + (card_size.x * card_scale / 2)
 	new_card.position.y = (level_index * card_size.y * card_scale) + (level_index * spacing) + padding + (card_size.y * card_scale / 2)
 	display_cards.append(new_card)
+	#(new_card as Node2D).z_index = 4
 	
 	var box = get_node("ScrollContainer/SizeBox") as Control
 	var height = box.custom_minimum_size.y
 	if height < (level_index * card_size.y * card_scale) + (level_index * spacing) + padding + (card_size.y * card_scale / 2):
 		box.custom_minimum_size.y = ((level_index + 1) * card_size.y * card_scale) + (level_index * spacing) + (padding * 2)
+	
+	return new_card
 
 func _remove_overlay():
 	get_parent().remove_child(self)

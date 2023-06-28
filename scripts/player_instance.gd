@@ -20,6 +20,8 @@ func _setup():
 	max_hp = RunHandler.max_hp
 	get_node("HealthBar").max_value = max_hp
 	_update_health_label()
+	get_node("MartialSprite").texture = RunHandler.martial_class.class_texture
+	get_node("MysticSprite").texture = RunHandler.mystic_class.class_texture
 
 func _take_damage(damage : int):
 	if damage < current_shield:

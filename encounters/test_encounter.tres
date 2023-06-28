@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3]
-
-[ext_resource type="Script" path="res://scripts/combat_encounter.gd" id="1_dv3lq"]
-[ext_resource type="Resource" uid="uid://cu8sxitpqku35" path="res://enemies/test_enemy/test_enemy.tres" id="2_devfh"]
-
-[resource]
-script = ExtResource("1_dv3lq")
-units = Array[Resource("res://scripts/unit.gd")]([ExtResource("2_devfh"), ExtResource("2_devfh"), ExtResource("2_devfh"), ExtResource("2_devfh"), ExtResource("2_devfh")])
-positions = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(1, 1), Vector2i(2, 1)])

@@ -29,6 +29,7 @@ horizontal_scroll_mode = 0
 [node name="SizeBox" type="Control" parent="ScrollContainer"]
 custom_minimum_size = Vector2(1850, 2.08165e-12)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="MenuBar" type="ColorRect" parent="."]
 layout_mode = 0

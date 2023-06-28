@@ -10,7 +10,7 @@ card_cost = 2
 card_sprite = ExtResource("1_8s6yh")
 card_description = "Deal 10 damage.
 Gain 10 shield."
-card_effects = PackedStringArray("damage-10", "shield-10+target:self")
+card_effects = PackedStringArray("damage-10+type:phys", "shield-10+target:self")
 card_targeting_type = 0
 card_targeting = 0
 card_aoe = 0

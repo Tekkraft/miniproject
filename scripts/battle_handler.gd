@@ -27,7 +27,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	#Check if player has won
+	var all_enemies = _get_all_enemies()
+	
+	if all_enemies.size() <= 0:
+		_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.ENCOUNTER_CONDITION, LanguageHandler.EncounterCondition.ON_EXIT_COMBAT)
+		RunHandler.current_hp = get_node("../BattleMap/Player").current_hp
+		if encounter_data.encounter_type == Encounter.EncounterType.ELITE:
+			SceneHandler._load_chest(load("res://encounters/chest_encounters/elite_chest_0.tres"))
+			return
+		if encounter_data.encounter_type == Encounter.EncounterType.BOSS:
+			SceneHandler._load_end(true)
+			return
+		SceneHandler._load_after_battle()
 
 func _setup(encounter_data : Encounter):
 	self.encounter_data = encounter_data
@@ -67,8 +79,9 @@ func _setup(encounter_data : Encounter):
 	for relic in RunHandler.current_relics:
 		_create_relic(relic)
 	
+	_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.ENCOUNTER_CONDITION, LanguageHandler.EncounterCondition.ON_ENTER_COMBAT)
+	
 	_start_player_turn()
-
 
 func _create_card(card_res : Card):
 	var new_card = card.instantiate()
@@ -80,6 +93,16 @@ func _create_card(card_res : Card):
 	new_card.connect("card_released", _play_card)
 	new_card.add_to_group("CardInstance")
 	_shuffle_deck()
+
+func _create_card_floating(card_res : Card):
+	var new_card = card.instantiate()
+	new_card.name = "Card_" + str(card_pool.size())
+	new_card._setup(card_res)
+	card_pool.append(new_card)
+	new_card.connect("card_activated", _activate_card)
+	new_card.connect("card_released", _play_card)
+	new_card.add_to_group("CardInstance")
+	return new_card
 
 func _create_relic(relic_res : Relic):
 	var new_relic = relic.instantiate() as Node2D
@@ -177,19 +200,36 @@ func _play_card(source):
 	
 	var card_returns = _execute_actions(player, targets, effects)
 	
+	_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.CARD_CONDITION, LanguageHandler.CardCondition.ON_CARD_PLAYED)
+
 	#Card effect resolution
 	var discard = true
 	if card_returns.has("exhaust_self"):
 		discard = false
 	
 	if discard:
-		_discard_card(source)
+		_play_remove_card(source)
 	else:
 		_exile_card(source)
 	
+	#Force exile
+	if card_returns.has("exile"):
+		pass
+	if card_returns.has("exile_random_hand"):
+		for i in card_returns["exile_random_hand"]:
+			if card_hand.size() <= 0:
+				break
+			var exile_target = card_hand.pick_random()
+			_exile_card(exile_target)
+	
+	#Force discard
+	if card_returns.has("discard"):
+		pass
+	
 	get_node("/root/MainUI/EnergyMeter/EnergyLabel").text = str(current_energy) + "/" + str(max_energy)
 	if card_hand.size() <= 0:
-		_end_player_turn()
+		#_end_player_turn()
+		pass
 
 func _check_validity(card_data, target_location):
 	var enemy = enemy_map[target_location.x][target_location.y]
@@ -217,6 +257,16 @@ func _draw_card():
 	get_node("/root/MainUI/CardArea").add_child(drawn)
 	drawn.position = Vector2(0, 0)
 	_realign_cards()
+	_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.CARD_CONDITION, LanguageHandler.CardCondition.ON_CARD_DRAW)
+
+func _play_remove_card(card):
+	var index = card_hand.find(card)
+	if index == -1:
+		return
+	card_discard.append(card)
+	card_hand.remove_at(index)
+	get_node("/root/MainUI/CardArea").remove_child(card)
+	_realign_cards()
 
 func _discard_card(card):
 	var index = card_hand.find(card)
@@ -226,6 +276,7 @@ func _discard_card(card):
 	card_hand.remove_at(index)
 	get_node("/root/MainUI/CardArea").remove_child(card)
 	_realign_cards()
+	_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.CARD_CONDITION, LanguageHandler.CardCondition.ON_CARD_DISCARD)
 
 func _exile_card(card):
 	var index = card_hand.find(card)
@@ -235,6 +286,7 @@ func _exile_card(card):
 	card_hand.remove_at(index)
 	get_node("/root/MainUI/CardArea").remove_child(card)
 	_realign_cards()
+	_activate_external_effects(get_node("../BattleMap/Player"), LanguageHandler.ActivationClass.CARD_CONDITION, LanguageHandler.CardCondition.ON_CARD_EXHAUST)
 
 func _return_card(card):
 	var index = card_hand.find(card)
@@ -324,15 +376,6 @@ func _end_enemy_turn():
 	_start_player_turn()
 
 func _start_player_turn():
-	#Check if player has won
-	var all_enemies = _get_all_enemies()
-	
-	if all_enemies.size() == 0:
-		RunHandler.current_hp = get_node("../BattleMap/Player").current_hp
-		if encounter_data.encounter_type == Encounter.EncounterType.ELITE:
-			RunHandler._get_random_relic()
-		SceneHandler._load_after_battle()
-	
 	#Normal start of turn effects
 	var player = get_node("../BattleMap/Player")
 	player._clear_shields()
@@ -409,6 +452,8 @@ func _execute_actions(attacker, targets, effects):
 	var attacker_carry_returns = attacker_returns[1]
 	execution_returns.merge(attacker_execution_returns)
 	for target in targets:
+		if target == null: 
+			continue
 		var defender_pre_effects = _generate_defender_effects(target)
 		#Defender effects
 		var defender_returns = _execute_effects(target, target, defender_pre_effects, {})
@@ -474,6 +519,11 @@ func _execute_effects(origin, target, effects_list, carry_data):
 				
 				if target_dead:
 					continue
+				
+				#Microvalidation Step
+				if not _micro_validation(effect, target):
+					continue
+				
 				var base_damage = int(effect.value)
 				var modified_damage = base_damage
 				var crit_mod = 1
@@ -551,8 +601,7 @@ func _execute_effects(origin, target, effects_list, carry_data):
 				var dead = target._take_damage(modified_damage)
 				if dead:
 					if target.name == "Player":
-						SceneHandler._load_menu()
-						return
+						return _player_dead()
 					_remove_enemy(target)
 					target_dead = true
 			"shield":
@@ -578,6 +627,10 @@ func _execute_effects(origin, target, effects_list, carry_data):
 					print("ERR>No such status.")
 					continue
 				
+				#Microvalidation Step
+				if not _micro_validation(effect, target):
+					continue
+				
 				#On Status Up execution
 				var on_status_effects = []
 				var pre_status_effects = []
@@ -591,10 +644,9 @@ func _execute_effects(origin, target, effects_list, carry_data):
 				if effect.modifiers.has("target") and effect.modifiers["target"] == "self":
 					sub_target = origin
 				else:
+					if target_dead:
+						continue
 					sub_target = target
-				
-				if target_dead:
-					continue
 				
 				var pre_status_data = _generate_status_effects(sub_target, LanguageHandler.ActivationClass.STATUS_CONDITON, LanguageHandler.StatusCondition.PRE_STATUS_UP)
 				pre_status_effects.append_array(pre_status_data[0])
@@ -614,8 +666,7 @@ func _execute_effects(origin, target, effects_list, carry_data):
 					var dead = target._take_damage(pre_status_carry_returns["power_through"])
 					if dead:
 						if target.name == "Player":
-							SceneHandler._load_menu()
-							return
+							return _player_dead()
 						_remove_enemy(target)
 						target_dead = true
 					continue
@@ -644,8 +695,7 @@ func _execute_effects(origin, target, effects_list, carry_data):
 				var dead = target._take_damage(effect.reference.status_counter)
 				if dead:
 					if target.name == "Player":
-						SceneHandler._load_menu()
-						return
+						return _player_dead()
 					_remove_enemy(target)
 			"critical":
 				if carry_returns.has("critical"):
@@ -710,7 +760,6 @@ func _execute_effects(origin, target, effects_list, carry_data):
 					print("ERR>Player stun not implemented.")
 					continue
 				target._cancel_intent()
-				effect.reference._decrement_counter(effect.reference.status_counter)
 			"power_through":
 				if not carry_data.has("status"):
 					continue
@@ -739,7 +788,59 @@ func _execute_effects(origin, target, effects_list, carry_data):
 						_:
 							print("ERR>Invalid cleanse type.")
 							break
+			"new_card":
+				var new_card
+				if not effect.modifiers.has("location"):
+					print("ERR>No location modifier.")
+					continue
+				if not effect.modifiers.has("id") and not effect.modifiers.has("class"):
+					print("ERR>No id or class modifier.")
+					continue
+				if effect.modifiers.has("id") and not effect.modifiers.has("class"):
+					print("ERR>Id modifier without class modifier.")
+					continue
+				if effect.modifiers.has("class"):
+					new_card = load("res://cards/" + effect.modifiers["class"] + "_cards/" + effect.modifiers["id"] + ".tres")
+				else:
+					new_card = load("res://cards/" + effect.modifiers["id"] + ".tres")
+				
+				var card_object = _create_card_floating(new_card)
+				
+				match effect.modifiers["location"]:
+					"hand":
+						card_hand.append(card_object)
+						get_node("/root/MainUI/CardArea").add_child(card_object)
+						card_object.position = Vector2(0, 0)
+						_realign_cards()
+					_:
+						print("ERR>Invalid cleanse type.")
+						break
+			"exile":
+				var exile_mode = "exile"
+				match effect.modifiers["mode"]:
+					"random_hand":
+						exile_mode = "exile_random_hand"
+					_:
+						print("ERR>Invalid exile mode.")
+						break
+				if execution_returns.has(exile_mode):
+					execution_returns[exile_mode] += effect.value
+				else:
+					execution_returns[exile_mode] = effect.value
 	return [execution_returns, carry_returns]
+
+func _micro_validation(effect, target):
+	if effect.modifiers.has("has_status"):
+		var status_valid = false
+		var statuses = target.get_node("Status").get_children()
+		var target_status = load("res://statuses/" + effect.modifiers["has_status"] +".tres")
+		for status in statuses:
+			if status.status_data == target_status:
+				status_valid = true
+				break
+		if not status_valid:
+			return false
+	return true
 
 func _generate_relic_effects(context_group : LanguageHandler.ActivationClass, context):
 	var effects = []
@@ -859,6 +960,11 @@ func _tick_down_status(status_data : Status, status_object):
 			Status.TickDownAmount.NONE:
 				status_object._queue_decrement_counter(0)
 
+func _player_dead():
+	SceneHandler._load_end(false)
+	return [{},{}]
+
+
 func _activate_external_effects(target, activation_context : LanguageHandler.ActivationClass, context):
 	#Generate all relevant effects
 	var all_effects = []
@@ -875,7 +981,6 @@ func _activate_external_effects(target, activation_context : LanguageHandler.Act
 			_tick_down_status(subdata, on_status)
 	
 	return _execute_effects(target, target, all_effects, {})
-
 
 func _modifier_dictionary_from_string(modifier_string : String):
 	var modifiers_array = modifier_string.split(",")

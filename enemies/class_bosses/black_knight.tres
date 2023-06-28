@@ -10,25 +10,25 @@
 script = ExtResource("1_6dgpf")
 action_name = "Attack"
 action_type = 0
-action_effects = PackedStringArray("damage-20")
+action_effects = PackedStringArray("damage-20+type:phys")
 
 [sub_resource type="Resource" id="Resource_xeo6s"]
 script = ExtResource("1_6dgpf")
 action_name = "Double Attack"
 action_type = 0
-action_effects = PackedStringArray("damage-8", "damage-8")
+action_effects = PackedStringArray("damage-8+type:phys", "damage-8+type:phys")
 
 [sub_resource type="Resource" id="Resource_6xkvo"]
 script = ExtResource("1_6dgpf")
 action_name = "Whirlwind"
 action_type = 0
-action_effects = PackedStringArray("damage-6", "damage-5", "damage-4")
+action_effects = PackedStringArray("damage-6+type:phys", "damage-5+type:phys", "damage-4+type:phys")
 
 [sub_resource type="Resource" id="Resource_bysht"]
 script = ExtResource("1_6dgpf")
 action_name = "Superpower"
 action_type = 0
-action_effects = PackedStringArray("damage-30", "status-1+id:weakness,target:self", "status-1+id:sunder,target:self")
+action_effects = PackedStringArray("damage-30+type:phys", "status-1+id:weakness,target:self", "status-1+id:sunder,target:self")
 
 [sub_resource type="Resource" id="Resource_0org7"]
 script = ExtResource("1_6dgpf")

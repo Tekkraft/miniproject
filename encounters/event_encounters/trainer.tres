@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventEncounter" load_steps=5 format=3 uid="uid://q07mek6k8e6t"]
+
+[ext_resource type="Script" path="res://scripts/event_option.gd" id="1_28s6i"]
+[ext_resource type="Script" path="res://scripts/event_encounter.gd" id="1_txvwh"]
+
+[sub_resource type="Resource" id="Resource_7qg8c"]
+script = ExtResource("1_28s6i")
+option_name = "Accept"
+option_description = "Replace all basic Attacks and Shields with a card in your deck."
+option_conditions = PackedStringArray("has_card-1+id_:basic_attack,class:null,mode:or", "has_card-1+id:basic_shield,class:null")
+option_effects = PackedStringArray("select-1+store:card", "replace-0+target:basic_attack,target_class:null,var:card", "replace-0+target:basic_shield,target_class:null,var:card")
+
+[sub_resource type="Resource" id="Resource_f5oyo"]
+script = ExtResource("1_28s6i")
+option_name = "Refuse"
+option_description = ""
+option_conditions = PackedStringArray()
+option_effects = PackedStringArray()
+
+[resource]
+script = ExtResource("1_txvwh")
+event_name = "Trainer"
+event_content = "As you travel, you are approached by a trainer who offers to train your existing talents."
+event_options = Array[ExtResource("1_28s6i")]([SubResource("Resource_7qg8c"), SubResource("Resource_f5oyo")])
+encounter_type = 5

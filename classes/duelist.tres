@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="CharacterClass" load_steps=4 format=3 uid="uid://d3ld4atbgppjf"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=5 format=3 uid="uid://d3ld4atbgppjf"]
 
 [ext_resource type="Resource" uid="uid://b1pi4mxn6jyo7" path="res://cards/duelist_cards/advance.tres" id="1_kvmuq"]
 [ext_resource type="Script" path="res://scripts/character_class.gd" id="1_t2pm0"]
 [ext_resource type="Resource" uid="uid://b73f0qpaxbap7" path="res://cards/duelist_cards/retreat.tres" id="2_uowhw"]
+[ext_resource type="Texture2D" uid="uid://bmwl6lguuxfnc" path="res://sprites/unit_sprites/UnitDuelist.png" id="3_frlli"]
 
 [resource]
+resource_name = "duelist"
 script = ExtResource("1_t2pm0")
 class_name_var = "Duelist"
 class_description = "The Duelist is a martial class with the ability to generate consistent critical hits and dodge attacks."
 class_start_cards = Array[Resource("res://scripts/card.gd")]([ExtResource("1_kvmuq"), ExtResource("2_uowhw")])
 class_pool_cards = Array[Resource("res://scripts/card.gd")]([])
 class_starting_hp = 30
+class_texture = ExtResource("3_frlli")

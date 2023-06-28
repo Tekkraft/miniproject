@@ -9,19 +9,19 @@
 script = ExtResource("1_whxdf")
 action_name = "Magic Blast"
 action_type = 0
-action_effects = PackedStringArray("damage-16")
+action_effects = PackedStringArray("damage-16+type:mag")
 
 [sub_resource type="Resource" id="Resource_6cv6b"]
 script = ExtResource("1_whxdf")
 action_name = "Magic Missile"
 action_type = 0
-action_effects = PackedStringArray("damage-2", "damage-2", "damage-2", "damage-2")
+action_effects = PackedStringArray("damage-2+type:mag", "damage-2+type:mag", "damage-2+type:mag", "damage-2+type:mag")
 
 [sub_resource type="Resource" id="Resource_d6ns1"]
 script = ExtResource("1_whxdf")
 action_name = "Thunder Shock"
 action_type = 0
-action_effects = PackedStringArray("damage-6", "status-1+id:shock")
+action_effects = PackedStringArray("damage-6+type:mag", "status-1+id:shock")
 
 [sub_resource type="Resource" id="Resource_lpoqf"]
 script = ExtResource("1_whxdf")

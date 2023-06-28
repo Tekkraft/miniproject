@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxnsowvu5ano3"]
+[gd_scene load_steps=8 format=3 uid="uid://cxnsowvu5ano3"]
 
 [ext_resource type="Texture2D" uid="uid://vet7jgu06h5k" path="res://tiles/TileOutlineBordered.png" id="1_3mmfq"]
 [ext_resource type="Script" path="res://scripts/map_handler.gd" id="1_ejx7e"]
 [ext_resource type="Script" path="res://scripts/player_instance.gd" id="3_ar7x8"]
-[ext_resource type="Texture2D" uid="uid://c21gprh2naie5" path="res://sprites/UnitTemplate.png" id="3_m3cij"]
+[ext_resource type="Texture2D" uid="uid://c3vel0ah4rati" path="res://sprites/unit_sprites/UnitBase.png" id="4_kel3w"]
+[ext_resource type="Texture2D" uid="uid://bj8rvmggrdw5j" path="res://sprites/unit_sprites/UnitWarrior.png" id="5_6fjf4"]
+[ext_resource type="Texture2D" uid="uid://cw3yj4oppwqho" path="res://sprites/unit_sprites/UnitElementalist.png" id="6_fbh60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1t4m"]
 size = Vector2(64, 64)
@@ -102,8 +104,17 @@ texture = ExtResource("1_3mmfq")
 script = ExtResource("3_ar7x8")
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player"]
+z_index = 1
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_m3cij")
+texture = ExtResource("4_kel3w")
+
+[node name="MartialSprite" type="Sprite2D" parent="Player"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_6fjf4")
+
+[node name="MysticSprite" type="Sprite2D" parent="Player"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_fbh60")
 
 [node name="HealthBar" type="ProgressBar" parent="Player"]
 anchors_preset = 7

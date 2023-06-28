@@ -22,7 +22,7 @@ action_effects = PackedStringArray("status-1+id:dodge")
 script = ExtResource("1_26rn1")
 action_name = "Shoot"
 action_type = 0
-action_effects = PackedStringArray("damage-12")
+action_effects = PackedStringArray("damage-12+type:phys")
 
 [sub_resource type="Resource" id="Resource_4i508"]
 script = ExtResource("2_j43ex")
